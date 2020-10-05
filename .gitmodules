@@ -1,9 +1,0 @@
-[submodule "rev/02-super-spy/src/libgba"]
-	path = rev/02-super-spy/src/libgba
-	url = https://github.com/devkitPro/libgba
-[submodule "rev/02-super-spy/src/maxmod"]
-	path = rev/02-super-spy/src/maxmod
-	url = https://github.com/devkitPro/maxmod
-[submodule "rev/02-super-spy/src/gba-challenge-dev"]
-	path = rev/02-super-spy/src/gba-challenge-dev
-	url = ssh://git@github.com/b01lers/gba-challenge-dev
