@@ -219,13 +219,8 @@ def makeResponse(info):
    # update hash, if any
    # - in tower, always give hash
    # - in lab, always give redacted  hash
-      # in lab, make sure we have valid hash first
    if location == world.lab:
-      if info.get("state_hash") == None  or  not verifyHash(info):
-        # during the ctf we had the weaker test below that allows bypass with no hash presented :/
-        #if not verifyHash(info):
-        info["reply"] = "  ** EXPELLED - You failed to properly harness SHA256 magic **"
-        return forceTeleport(info, 15)
+      hash = "xxx"
    elif location == world.tower or (hash != None and location != world.lab):
       hash = State.hashState(SECRET, newState)
    if hash != None:
@@ -299,11 +294,11 @@ def doAnswer(info, ansValues):
    # check against correct answer
    state = info["state"]
    location = state["loc"]
-    # in lab, make sure we have valid hash first
-    if location == world.lab:
+   # in lab, make sure we have valid hash first
+   if location == world.lab:
       if info.get("state_hash") == None  or  not verifyHash(info):
-        # during the ctf we had the weaker test below that allows bypass with no hash presented :/
-        #if not verifyHash(info):
+      #during the ctf we had the weaker test below that allows for bypass when no hash is presented
+      #if not verifyHash(info):
         info["reply"] = "  ** EXPELLED - You failed to properly harness SHA256 magic **"
         return forceTeleport(info, 15)
    lvl = state["levels"][location]
