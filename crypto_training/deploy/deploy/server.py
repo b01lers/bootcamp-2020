@@ -296,7 +296,9 @@ def doAnswer(info, ansValues):
    location = state["loc"]
    # in lab, make sure we have valid hash first
    if location == world.lab:
-      if not verifyHash(info):
+      if info.get("state_hash") == None  or  not verifyHash(info):
+      #during the ctf we had the weaker test below that allows for bypass when no hash is presented
+      #if not verifyHash(info):
         info["reply"] = "  ** EXPELLED - You failed to properly harness SHA256 magic **"
         return forceTeleport(info, 15)
    lvl = state["levels"][location]
