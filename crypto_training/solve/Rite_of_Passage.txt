@@ -1,0 +1,19 @@
+The server is stateless so it believes whatever the user sends. The state string has a format 
+"location,(challenge_levels)", e.g., "3,(0,0,.....0)" is the value upon landing. Changing
+3->9 moves the player to the tower. Once there, you need to still display the challenge
+somehow (normally descriptions are only generated on move commands). But you can issue
+"RESET", get the challenge displayed, solve and submit it, and get the flag.
+
+You can simply loop through numbers 1, 2, 3.... until you get the right hash (e.g., 5663566 works).
+
+ANSWER: 5663566 (or any other number that hashes correctly)
+
+---
+
+As a one-liner with curl:
+
+curl "localhost:5000/api?token=secret&state=9,(0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0)&comm=ans%205663566"
+
+(you need to substitute your token for 'secret', of course)
+
+==END==

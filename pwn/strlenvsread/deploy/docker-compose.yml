@@ -1,0 +1,23 @@
+version: "3.7"
+services:
+    strlenvsread:
+        container_name: strlenvsread
+        build:
+            dockerfile: ./deploy/Dockerfile
+            context: ../
+        logging:
+            driver: "json-file"
+        ports:
+            - "1006:1337"
+    strlenvsread-build:
+        container_name: strlenvsread-build
+        build:
+            dockerfile: ./deploy/Dockerfile-build
+            context: ../
+        logging:
+            driver: "json-file"
+        volumes:
+            - build:/home/strlenvsread/build
+volumes:
+    build:
+        name: strlenvsread-build

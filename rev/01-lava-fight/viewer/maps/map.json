@@ -1,0 +1,26 @@
+{ "frames": {
+   "map.aseprite": {
+    "frame": { "x": 0, "y": 0, "w": 1920, "h": 480 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 1920, "h": 480 },
+    "sourceSize": { "w": 1920, "h": 480 },
+    "duration": 100
+   }
+ },
+ "meta": {
+  "app": "http://www.aseprite.org/",
+  "version": "1.2.21-x64",
+  "image": "map.png",
+  "format": "RGBA8888",
+  "size": { "w": 1920, "h": 480 },
+  "scale": "1",
+  "frameTags": [
+  ],
+  "layers": [
+   { "name": "Collision Surfaces", "opacity": 255, "blendMode": "normal" }
+  ],
+  "slices": [
+  ]
+ }
+}

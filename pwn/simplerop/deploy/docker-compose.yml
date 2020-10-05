@@ -1,0 +1,23 @@
+version: "3.7"
+services:
+    simplerop:
+        container_name: simplerop
+        build:
+            dockerfile: ./deploy/Dockerfile
+            context: ../
+        logging:
+            driver: "json-file"
+        ports:
+            - "1008:1337"
+    simplerop-build:
+        container_name: simplerop-build
+        build:
+            dockerfile: ./deploy/Dockerfile-build
+            context: ../
+        logging:
+            driver: "json-file"
+        volumes:
+            - build:/home/simplerop/build
+volumes:
+    build:
+        name: simplerop-build

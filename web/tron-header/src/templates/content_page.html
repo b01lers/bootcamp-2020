@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>{{ title }}.</title>
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='css/tron.css') }}"
+    />
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='css/style.css') }}"
+    />
+  </head>
+  <body>
+    <div id="main-wrapper">
+      <div class="content-page">
+        <div>
+          <h1>{{ title }}.</h1>
+        </div>
+        <div>
+          {% if image_name %}
+          <img
+            src="{{ url_for('static', filename='img/' + image_name) }}"
+            alt="location image"
+            class="location_img"
+          />
+          {% endif %}
+          <p>{{ description }}</p>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

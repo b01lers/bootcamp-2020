@@ -1,0 +1,46 @@
+@font-face {
+    font-family: Clacon;
+    src: url(../font/clacon.ttf);
+}
+
+@font-face {
+    font-family: Modeseven;
+    src: url(../font/Modeseven-L3n5.ttf);
+}
+
+body {
+    background-color: black;
+}
+
+input {
+    color: #412be1;
+    font-family: Clacon, "Times New Roman";
+    background-color: transparent;
+    border:1px solid transparent;
+    width: 100%;
+    font-size: 25px;
+    text-shadow: 0px 0px 6px #5443d8;
+}
+
+li {
+    list-style-type: none;
+    color: #412be1;
+    font-family: Clacon, "Times New Roman";
+    font-size: 25px;
+    text-shadow: 0px 0px 6px #5443d8;
+}
+
+#result {
+    color: #412be1;
+    font-family: Modeseven, "Times New Roman";
+    font-size: 25px;
+    text-shadow: 0px 0px 6px #5443d8;
+}
+
+#logo {
+    position: fixed;
+    width: 320px;
+    height: 240px;
+    left: 85%;
+    top: 80%;
+}

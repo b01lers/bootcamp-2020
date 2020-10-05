@@ -1,0 +1,22 @@
+@font-face {
+    font-family: Tron;
+    src: url(../font/Tr2n.ttf);
+}
+
+body {
+    background-color: black;
+}
+
+.container {
+    display: flex;
+    justify-content: center;
+}
+
+h1 {
+    font-family: Tron, "Times New Roman";
+    color: #412be1;
+    text-align: center;
+    text-shadow: 0px 0px 6px #5443d8;
+}
+
+/* (3/5): 0m3_ */

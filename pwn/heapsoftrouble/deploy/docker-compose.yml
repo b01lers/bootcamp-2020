@@ -1,0 +1,23 @@
+version: "3.7"
+services:
+    heapsoftrouble:
+        container_name: heapsoftrouble
+        build:
+            dockerfile: ./deploy/Dockerfile
+            context: ../
+        logging:
+            driver: "json-file"
+        ports:
+            - "1010:1337"
+    heapsoftrouble-build:
+        container_name: heapsoftrouble-build
+        build:
+            dockerfile: ./deploy/Dockerfile-build
+            context: ../
+        logging:
+            driver: "json-file"
+        volumes:
+            - build:/home/heapsoftrouble/build
+volumes:
+    build:
+        name: heapsoftrouble-build

@@ -1,0 +1,3850 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <title>sock.lua Documentation</title>
+    <meta charset="utf-8">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/normalize/7.0.0/normalize.min.css" rel="styleshet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/milligram/1.3.0/milligram.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="ldoc.css">
+</head>
+<body>
+
+
+<input type="checkbox" id="sidebar_toggle" class="sidebar_toggle" role="button">
+<label class="sidebar_toggle_label" for="sidebar_toggle"></label>
+
+<div class="sidebar">
+    <div class="table-of-contents">
+        <h2><a href="#Tables">Tables</a></h2>
+        <div class="function_list">
+            <div class="name" ><a href="#CONNECTING_STATES">CONNECTING_STATES</a></div>
+            <div class="name" ><a href="#CONNECTION_STATES">CONNECTION_STATES</a></div>
+            <div class="name" ><a href="#DISCONNECTING_STATES">DISCONNECTING_STATES</a></div>
+            <div class="name" ><a href="#SEND_MODES">SEND_MODES</a></div>
+        </div>
+        <br>
+        <h2><a href="#Class_Server">Class Server </a></h2>
+        <div class="function_list">
+            <div class="name" ><a href="#Server:destroy">Server:destroy()</a></div>
+            <div class="name" ><a href="#Server:enableCompression">Server:enableCompression()</a></div>
+            <div class="name" ><a href="#Server:getAddress">Server:getAddress()</a></div>
+            <div class="name" ><a href="#Server:getClient">Server:getClient(peer)</a></div>
+            <div class="name" ><a href="#Server:getClientByConnectId">Server:getClientByConnectId(connectId)</a></div>
+            <div class="name" ><a href="#Server:getClientByIndex">Server:getClientByIndex(index)</a></div>
+            <div class="name" ><a href="#Server:getClientCount">Server:getClientCount()</a></div>
+            <div class="name" ><a href="#Server:getClients">Server:getClients()</a></div>
+            <div class="name" ><a href="#Server:getDefaultSendMode">Server:getDefaultSendMode()</a></div>
+            <div class="name" ><a href="#Server:getLastServiceTime">Server:getLastServiceTime()</a></div>
+            <div class="name" ><a href="#Server:getMaxChannels">Server:getMaxChannels()</a></div>
+            <div class="name" ><a href="#Server:getMaxPeers">Server:getMaxPeers()</a></div>
+            <div class="name" ><a href="#Server:getMessageTimeout">Server:getMessageTimeout()</a></div>
+            <div class="name" ><a href="#Server:getPeerByIndex">Server:getPeerByIndex(index)</a></div>
+            <div class="name" ><a href="#Server:getPort">Server:getPort()</a></div>
+            <div class="name" ><a href="#Server:getSendMode">Server:getSendMode()</a></div>
+            <div class="name" ><a href="#Server:getSocketAddress">Server:getSocketAddress()</a></div>
+            <div class="name" ><a href="#Server:getTotalReceivedData">Server:getTotalReceivedData()</a></div>
+            <div class="name" ><a href="#Server:getTotalReceivedPackets">Server:getTotalReceivedPackets()</a></div>
+            <div class="name" ><a href="#Server:getTotalSentData">Server:getTotalSentData()</a></div>
+            <div class="name" ><a href="#Server:getTotalSentPackets">Server:getTotalSentPackets()</a></div>
+            <div class="name" ><a href="#Server:log">Server:log(event, data)</a></div>
+            <div class="name" ><a href="#Server:on">Server:on(event, callback)</a></div>
+            <div class="name" ><a href="#Server:removeCallback">Server:removeCallback(callback)</a></div>
+            <div class="name" ><a href="#Server:resetSendSettings">Server:resetSendSettings()</a></div>
+            <div class="name" ><a href="#Server:sendToAll">Server:sendToAll(event, data)</a></div>
+            <div class="name" ><a href="#Server:sendToAllBut">Server:sendToAllBut(client, event, data)</a></div>
+            <div class="name" ><a href="#Server:sendToPeer">Server:sendToPeer(peer, event, data)</a></div>
+            <div class="name" ><a href="#Server:setBandwidthLimit">Server:setBandwidthLimit(incoming, outgoing)</a></div>
+            <div class="name" ><a href="#Server:setDefaultSendChannel">Server:setDefaultSendChannel(channel)</a></div>
+            <div class="name" ><a href="#Server:setDefaultSendMode">Server:setDefaultSendMode(mode)</a></div>
+            <div class="name" ><a href="#Server:setMaxChannels">Server:setMaxChannels(limit)</a></div>
+            <div class="name" ><a href="#Server:setMessageTimeout">Server:setMessageTimeout(timeout)</a></div>
+            <div class="name" ><a href="#Server:setSchema">Server:setSchema(event, schema)</a></div>
+            <div class="name" ><a href="#Server:setSendChannel">Server:setSendChannel(channel)</a></div>
+            <div class="name" ><a href="#Server:setSendMode">Server:setSendMode(mode)</a></div>
+            <div class="name" ><a href="#Server:setSerialization">Server:setSerialization(serialize, deserialize)</a></div>
+            <div class="name" ><a href="#Server:update">Server:update()</a></div>
+        </div>
+        <br>
+        <h2><a href="#Class_Client">Class Client </a></h2>
+        <div class="function_list">
+            <div class="name" ><a href="#Client:connect">Client:connect(code)</a></div>
+            <div class="name" ><a href="#Client:disconnect">Client:disconnect(code)</a></div>
+            <div class="name" ><a href="#Client:disconnectLater">Client:disconnectLater(code)</a></div>
+            <div class="name" ><a href="#Client:disconnectNow">Client:disconnectNow(code)</a></div>
+            <div class="name" ><a href="#Client:enableCompression">Client:enableCompression()</a></div>
+            <div class="name" ><a href="#Client:getAddress">Client:getAddress()</a></div>
+            <div class="name" ><a href="#Client:getConnectId">Client:getConnectId()</a></div>
+            <div class="name" ><a href="#Client:getDefaultSendMode">Client:getDefaultSendMode()</a></div>
+            <div class="name" ><a href="#Client:getIndex">Client:getIndex()</a></div>
+            <div class="name" ><a href="#Client:getLastServiceTime">Client:getLastServiceTime()</a></div>
+            <div class="name" ><a href="#Client:getMaxChannels">Client:getMaxChannels()</a></div>
+            <div class="name" ><a href="#Client:getMessageTimeout">Client:getMessageTimeout()</a></div>
+            <div class="name" ><a href="#Client:getPeerByIndex">Client:getPeerByIndex(index)</a></div>
+            <div class="name" ><a href="#Client:getPort">Client:getPort()</a></div>
+            <div class="name" ><a href="#Client:getRoundTripTime">Client:getRoundTripTime()</a></div>
+            <div class="name" ><a href="#Client:getSendMode">Client:getSendMode()</a></div>
+            <div class="name" ><a href="#Client:getSocketAddress">Client:getSocketAddress()</a></div>
+            <div class="name" ><a href="#Client:getState">Client:getState()</a></div>
+            <div class="name" ><a href="#Client:getTotalReceivedData">Client:getTotalReceivedData()</a></div>
+            <div class="name" ><a href="#Client:getTotalReceivedPackets">Client:getTotalReceivedPackets()</a></div>
+            <div class="name" ><a href="#Client:getTotalSentData">Client:getTotalSentData()</a></div>
+            <div class="name" ><a href="#Client:getTotalSentPackets">Client:getTotalSentPackets()</a></div>
+            <div class="name" ><a href="#Client:isConnected">Client:isConnected()</a></div>
+            <div class="name" ><a href="#Client:isConnecting">Client:isConnecting()</a></div>
+            <div class="name" ><a href="#Client:isDisconnected">Client:isDisconnected()</a></div>
+            <div class="name" ><a href="#Client:isDisconnecting">Client:isDisconnecting()</a></div>
+            <div class="name" ><a href="#Client:log">Client:log(event, data)</a></div>
+            <div class="name" ><a href="#Client:on">Client:on(event, callback)</a></div>
+            <div class="name" ><a href="#Client:removeCallback">Client:removeCallback(callback)</a></div>
+            <div class="name" ><a href="#Client:reset">Client:reset(client)</a></div>
+            <div class="name" ><a href="#Client:resetSendSettings">Client:resetSendSettings()</a></div>
+            <div class="name" ><a href="#Client:send">Client:send(event, data)</a></div>
+            <div class="name" ><a href="#Client:setBandwidthLimit">Client:setBandwidthLimit(incoming, outgoing)</a></div>
+            <div class="name" ><a href="#Client:setDefaultSendChannel">Client:setDefaultSendChannel(channel)</a></div>
+            <div class="name" ><a href="#Client:setDefaultSendMode">Client:setDefaultSendMode(mode)</a></div>
+            <div class="name" ><a href="#Client:setMaxChannels">Client:setMaxChannels(limit)</a></div>
+            <div class="name" ><a href="#Client:setMessageTimeout">Client:setMessageTimeout(timeout)</a></div>
+            <div class="name" ><a href="#Client:setPingInterval">Client:setPingInterval(interval)</a></div>
+            <div class="name" ><a href="#Client:setSchema">Client:setSchema(event, schema)</a></div>
+            <div class="name" ><a href="#Client:setSendChannel">Client:setSendChannel(channel)</a></div>
+            <div class="name" ><a href="#Client:setSendMode">Client:setSendMode(mode)</a></div>
+            <div class="name" ><a href="#Client:setSerialization">Client:setSerialization(serialize, deserialize)</a></div>
+            <div class="name" ><a href="#Client:setThrottle">Client:setThrottle(interval, acceleration, deceleration)</a></div>
+            <div class="name" ><a href="#Client:setTimeout">Client:setTimeout(limit, minimum, maximum)</a></div>
+            <div class="name" ><a href="#Client:update">Client:update()</a></div>
+        </div>
+        <br>
+        <h2><a href="#sock">sock</a></h2>
+        <div class="function_list">
+            <div class="name" ><a href="#newClient">newClient(serverOrAddress, port, maxChannels)</a></div>
+            <div class="name" ><a href="#newServer">newServer(address, port, maxPeers, maxChannels, inBandwidth, outBandwidth)</a></div>
+        </div>
+        <br>
+    </div>
+</div>
+
+<div class="contents">
+
+<!-- Header -->
+<header class="header">
+    <h1 class="project-title">sock.lua</h1>
+</header>
+
+<div id="main">
+
+<!-- Menu -->
+
+<div id="content">
+
+
+<p>A Lua networking library for LÖVE games.</p>
+<p>
+
+<ul>
+    <li><a href="https://github.com/camchenry/sock.lua">Source code</a></li>
+    <li><a href="https://github.com/camchenry/sock.lua/tree/master/examples">Examples</a></li>
+</ul>
+</p>
+
+<section class="section" id="Tables">
+    <h1 class="section-header "><a name="Tables"></a>Tables</h1>
+    <div class="section-content">
+
+    <dl class="function">
+    <div class="function_def">
+    <a class="anchor_link" href="#CONNECTING_STATES" name="CONNECTING_STATES">🔗</a>
+    <h3 class="function_name">CONNECTING_STATES</h3>
+    </dt>
+    <dd>
+    <p class="summary">
+    States that represent the client connecting to a server.
+    </p>
+    <p class="description">
+
+
+
+    </p>
+
+
+    <h3>Fields:</h3>
+    <dl>
+          <dt>
+          <span class="parameter_info">
+            <span class="parameter">connecting</span>
+          </span>
+          </dt>
+        <dd>
+        In the process of connecting to the server.
+        </dt>
+        </li>
+          <dt>
+          <span class="parameter_info">
+            <span class="parameter">acknowledging_connect</span>
+          </span>
+          </dt>
+        <dd>
+
+
+
+        </dt>
+        </li>
+          <dt>
+          <span class="parameter_info">
+            <span class="parameter">connection_pending</span>
+          </span>
+          </dt>
+        <dd>
+
+
+
+        </dt>
+        </li>
+          <dt>
+          <span class="parameter_info">
+            <span class="parameter">connection_succeeded</span>
+          </span>
+          </dt>
+        <dd>
+
+
+
+        </dt>
+        </li>
+    </dl>
+
+
+
+
+
+</dd>
+</div>
+    <div class="function_def">
+    <a class="anchor_link" href="#CONNECTION_STATES" name="CONNECTION_STATES">🔗</a>
+    <h3 class="function_name">CONNECTION_STATES</h3>
+    </dt>
+    <dd>
+    <p class="summary">
+    All of the possible connection statuses for a client connection.
+    </p>
+    <p class="description">
+
+
+
+    </p>
+
+
+    <h3>Fields:</h3>
+    <dl>
+          <dt>
+          <span class="parameter_info">
+            <span class="parameter">disconnected</span>
+          </span>
+          </dt>
+        <dd>
+        Disconnected from the server.
+        </dt>
+        </li>
+          <dt>
+          <span class="parameter_info">
+            <span class="parameter">connecting</span>
+          </span>
+          </dt>
+        <dd>
+        In the process of connecting to the server.
+        </dt>
+        </li>
+          <dt>
+          <span class="parameter_info">
+            <span class="parameter">acknowledging_connect</span>
+          </span>
+          </dt>
+        <dd>
+
+
+
+        </dt>
+        </li>
+          <dt>
+          <span class="parameter_info">
+            <span class="parameter">connection_pending</span>
+          </span>
+          </dt>
+        <dd>
+
+
+
+        </dt>
+        </li>
+          <dt>
+          <span class="parameter_info">
+            <span class="parameter">connection_succeeded</span>
+          </span>
+          </dt>
+        <dd>
+
+
+
+        </dt>
+        </li>
+          <dt>
+          <span class="parameter_info">
+            <span class="parameter">connected</span>
+          </span>
+          </dt>
+        <dd>
+        Successfully connected to the server.
+        </dt>
+        </li>
+          <dt>
+          <span class="parameter_info">
+            <span class="parameter">disconnect_later</span>
+          </span>
+          </dt>
+        <dd>
+        Disconnecting, but only after sending all queued packets.
+        </dt>
+        </li>
+          <dt>
+          <span class="parameter_info">
+            <span class="parameter">disconnecting</span>
+          </span>
+          </dt>
+        <dd>
+        In the process of disconnecting from the server.
+        </dt>
+        </li>
+          <dt>
+          <span class="parameter_info">
+            <span class="parameter">acknowledging_disconnect</span>
+          </span>
+          </dt>
+        <dd>
+
+
+
+        </dt>
+        </li>
+          <dt>
+          <span class="parameter_info">
+            <span class="parameter">zombie</span>
+          </span>
+          </dt>
+        <dd>
+
+
+
+        </dt>
+        </li>
+          <dt>
+          <span class="parameter_info">
+            <span class="parameter">unknown</span>
+          </span>
+          </dt>
+        <dd>
+
+
+
+        </dt>
+        </li>
+    </dl>
+
+
+
+    <h3>See also:</h3>
+    <ul class="see-items">
+    <li>
+        <a href="#Client:getState">Client:getState</a>
+    </li>
+    </ul>
+
+
+</dd>
+</div>
+    <div class="function_def">
+    <a class="anchor_link" href="#DISCONNECTING_STATES" name="DISCONNECTING_STATES">🔗</a>
+    <h3 class="function_name">DISCONNECTING_STATES</h3>
+    </dt>
+    <dd>
+    <p class="summary">
+    States that represent the client disconnecting from a server.
+    </p>
+    <p class="description">
+
+
+
+    </p>
+
+
+    <h3>Fields:</h3>
+    <dl>
+          <dt>
+          <span class="parameter_info">
+            <span class="parameter">disconnect_later</span>
+          </span>
+          </dt>
+        <dd>
+        Disconnecting, but only after sending all queued packets.
+        </dt>
+        </li>
+          <dt>
+          <span class="parameter_info">
+            <span class="parameter">disconnecting</span>
+          </span>
+          </dt>
+        <dd>
+        In the process of disconnecting from the server.
+        </dt>
+        </li>
+          <dt>
+          <span class="parameter_info">
+            <span class="parameter">acknowledging_disconnect</span>
+          </span>
+          </dt>
+        <dd>
+
+
+
+        </dt>
+        </li>
+    </dl>
+
+
+
+
+
+</dd>
+</div>
+    <div class="function_def">
+    <a class="anchor_link" href="#SEND_MODES" name="SEND_MODES">🔗</a>
+    <h3 class="function_name">SEND_MODES</h3>
+    </dt>
+    <dd>
+    <p class="summary">
+    Valid modes for sending messages.
+    </p>
+    <p class="description">
+
+
+
+    </p>
+
+
+    <h3>Fields:</h3>
+    <dl>
+          <dt>
+          <span class="parameter_info">
+            <span class="parameter">reliable</span>
+          </span>
+          </dt>
+        <dd>
+        Message is guaranteed to arrive, and arrive in the order in which it is sent.
+        </dt>
+        </li>
+          <dt>
+          <span class="parameter_info">
+            <span class="parameter">unsequenced</span>
+          </span>
+          </dt>
+        <dd>
+        Message has no guarantee on the order that it arrives.
+        </dt>
+        </li>
+          <dt>
+          <span class="parameter_info">
+            <span class="parameter">unreliable</span>
+          </span>
+          </dt>
+        <dd>
+        Message is not guaranteed to arrive.
+        </dt>
+        </li>
+    </dl>
+
+
+
+
+
+</dd>
+</div>
+</dl>
+</div>
+</section>
+<section class="section" id="Server">
+    <h1 class="section-header has-description"><a name="Class_Server"></a>Class Server </h1>
+    <div class="section-content">
+
+          <p class="section-description">
+          Manages all clients and receives network events.
+          </p>
+    <dl class="function">
+    <div class="function_def">
+    <a class="anchor_link" href="#Server:destroy" name="Server:destroy">🔗</a>
+    <h3 class="function_name">Server:destroy()</h3>
+    </dt>
+    <dd>
+    <p class="summary">
+    Destroys the server and frees the port it is bound to.
+    </p>
+    <p class="description">
+
+
+
+    </p>
+
+
+
+
+
+
+
+</dd>
+</div>
+    <div class="function_def">
+    <a class="anchor_link" href="#Server:enableCompression" name="Server:enableCompression">🔗</a>
+    <h3 class="function_name">Server:enableCompression()</h3>
+    </dt>
+    <dd>
+    <p class="summary">
+    Enables an adaptive order-2 PPM range coder for the transmitted data of all peers.
+    </p>
+    <p class="description">
+     Both the client and server must both either have compression enabled or disabled.</p>
+
+<p> Note: lua-enet does not currently expose a way to disable the compression after it has been enabled.
+    </p>
+
+
+
+
+
+
+
+</dd>
+</div>
+    <div class="function_def">
+    <a class="anchor_link" href="#Server:getAddress" name="Server:getAddress">🔗</a>
+    <h3 class="function_name">Server:getAddress()</h3>
+    </dt>
+    <dd>
+    <p class="summary">
+    Get the IP address or hostname that the server was created with.
+    </p>
+    <p class="description">
+
+
+
+    </p>
+
+
+
+    <h3>Returns:</h3>
+    <ol>
+        <li>
+           <span class="types"><span class="type">string</span></span>
+
+
+
+        </li>
+    </ol>
+
+
+
+
+</dd>
+</div>
+    <div class="function_def">
+    <a class="anchor_link" href="#Server:getClient" name="Server:getClient">🔗</a>
+    <h3 class="function_name">Server:getClient(peer)</h3>
+    </dt>
+    <dd>
+    <p class="summary">
+    Gets the Client object associated with an enet peer.
+    </p>
+    <p class="description">
+
+
+
+    </p>
+
+
+    <h3>Parameters:</h3>
+    <dl>
+          <dt>
+          <span class="parameter_info">
+            <span class="types"><span class="type">peer</span></span>
+            <span class="parameter">peer</span>
+          </span>
+          </dt>
+        <dd>
+         An enet peer.
+        </dt>
+        </li>
+    </dl>
+
+    <h3>Returns:</h3>
+    <ol>
+        <li>
+           <span class="types"><a class="type" href="#Client">Client</a></span>
+        Object associated with the peer.
+        </li>
+    </ol>
+
+
+
+
+</dd>
+</div>
+    <div class="function_def">
+    <a class="anchor_link" href="#Server:getClientByConnectId" name="Server:getClientByConnectId">🔗</a>
+    <h3 class="function_name">Server:getClientByConnectId(connectId)</h3>
+    </dt>
+    <dd>
+    <p class="summary">
+    Gets the Client object that has the given connection id.
+    </p>
+    <p class="description">
+
+
+
+    </p>
+
+
+    <h3>Parameters:</h3>
+    <dl>
+          <dt>
+          <span class="parameter_info">
+            <span class="types"><span class="type">number</span></span>
+            <span class="parameter">connectId</span>
+          </span>
+          </dt>
+        <dd>
+         The unique client connection id.
+        </dt>
+        </li>
+    </dl>
+
+    <h3>Returns:</h3>
+    <ol>
+        <li>
+           <span class="types"><a class="type" href="#Client">Client</a></span>
+
+
+
+        </li>
+    </ol>
+
+
+
+
+</dd>
+</div>
+    <div class="function_def">
+    <a class="anchor_link" href="#Server:getClientByIndex" name="Server:getClientByIndex">🔗</a>
+    <h3 class="function_name">Server:getClientByIndex(index)</h3>
+    </dt>
+    <dd>
+    <p class="summary">
+    Get the Client object that has the given peer index.
+    </p>
+    <p class="description">
+
+
+
+    </p>
+
+
+    <h3>Parameters:</h3>
+    <dl>
+          <dt>
+          <span class="parameter_info">
+            <span class="parameter">index</span>
+          </span>
+          </dt>
+        <dd>
+
+
+
+        </dt>
+        </li>
+    </dl>
+
+    <h3>Returns:</h3>
+    <ol>
+        <li>
+           <span class="types"><a class="type" href="#Client">Client</a></span>
+
+
+
+        </li>
+    </ol>
+
+
+
+
+</dd>
+</div>
+    <div class="function_def">
+    <a class="anchor_link" href="#Server:getClientCount" name="Server:getClientCount">🔗</a>
+    <h3 class="function_name">Server:getClientCount()</h3>
+    </dt>
+    <dd>
+    <p class="summary">
+    Get the number of Clients that are currently connected to the server.
+    </p>
+    <p class="description">
+
+
+
+    </p>
+
+
+
+    <h3>Returns:</h3>
+    <ol>
+        <li>
+           <span class="types"><span class="type">number</span></span>
+        The number of active clients.
+        </li>
+    </ol>
+
+
+
+
+</dd>
+</div>
+    <div class="function_def">
+    <a class="anchor_link" href="#Server:getClients" name="Server:getClients">🔗</a>
+    <h3 class="function_name">Server:getClients()</h3>
+    </dt>
+    <dd>
+    <p class="summary">
+    Get the table of Clients actively connected to the server.
+    </p>
+    <p class="description">
+
+
+
+    </p>
+
+
+
+    <h3>Returns:</h3>
+    <ol>
+        <li>
+        {Client,...}
+        </li>
+    </ol>
+
+
+
+
+</dd>
+</div>
+    <div class="function_def">
+    <a class="anchor_link" href="#Server:getDefaultSendMode" name="Server:getDefaultSendMode">🔗</a>
+    <h3 class="function_name">Server:getDefaultSendMode()</h3>
+    </dt>
+    <dd>
+    <p class="summary">
+    Get the default send mode.
+    </p>
+    <p class="description">
+
+
+
+    </p>
+
+
+
+    <h3>Returns:</h3>
+    <ol>
+        <li>
+           <span class="types"><span class="type">string</span></span>
+
+
+
+        </li>
+    </ol>
+
+
+    <h3>See also:</h3>
+    <ul class="see-items">
+    <li>
+        <a href="#SEND_MODES">SEND_MODES</a>
+    </li>
+    </ul>
+
+
+</dd>
+</div>
+    <div class="function_def">
+    <a class="anchor_link" href="#Server:getLastServiceTime" name="Server:getLastServiceTime">🔗</a>
+    <h3 class="function_name">Server:getLastServiceTime()</h3>
+    </dt>
+    <dd>
+    <p class="summary">
+    Get the last time when network events were serviced.
+    </p>
+    <p class="description">
+
+
+
+    </p>
+
+
+
+    <h3>Returns:</h3>
+    <ol>
+        <li>
+           <span class="types"><span class="type">number</span></span>
+        Timestamp of the last time events were serviced.
+        </li>
+    </ol>
+
+
+
+
+</dd>
+</div>
+    <div class="function_def">
+    <a class="anchor_link" href="#Server:getMaxChannels" name="Server:getMaxChannels">🔗</a>
+    <h3 class="function_name">Server:getMaxChannels()</h3>
+    </dt>
+    <dd>
+    <p class="summary">
+    Get the number of allocated channels.
+    </p>
+    <p class="description">
+     Channels are zero-indexed, e.g. 16 channels allocated means that the
+ maximum channel that can be used is 15.
+    </p>
+
+
+
+    <h3>Returns:</h3>
+    <ol>
+        <li>
+           <span class="types"><span class="type">number</span></span>
+        Number of allocated channels.
+        </li>
+    </ol>
+
+
+
+
+</dd>
+</div>
+    <div class="function_def">
+    <a class="anchor_link" href="#Server:getMaxPeers" name="Server:getMaxPeers">🔗</a>
+    <h3 class="function_name">Server:getMaxPeers()</h3>
+    </dt>
+    <dd>
+    <p class="summary">
+    Get the number of allocated slots for peers.
+    </p>
+    <p class="description">
+
+
+
+    </p>
+
+
+
+    <h3>Returns:</h3>
+    <ol>
+        <li>
+           <span class="types"><span class="type">number</span></span>
+        Number of allocated slots.
+        </li>
+    </ol>
+
+
+
+
+</dd>
+</div>
+    <div class="function_def">
+    <a class="anchor_link" href="#Server:getMessageTimeout" name="Server:getMessageTimeout">🔗</a>
+    <h3 class="function_name">Server:getMessageTimeout()</h3>
+    </dt>
+    <dd>
+    <p class="summary">
+    Get the timeout for packets.
+    </p>
+    <p class="description">
+
+
+
+    </p>
+
+
+
+    <h3>Returns:</h3>
+    <ol>
+        <li>
+           <span class="types"><span class="type">number</span></span>
+        Time to wait for incoming packets in milliseconds.
+ initial default is 0.
+        </li>
+    </ol>
+
+
+
+
+</dd>
+</div>
+    <div class="function_def">
+    <a class="anchor_link" href="#Server:getPeerByIndex" name="Server:getPeerByIndex">🔗</a>
+    <h3 class="function_name">Server:getPeerByIndex(index)</h3>
+    </dt>
+    <dd>
+    <p class="summary">
+    Get the enet_peer that has the given index.
+    </p>
+    <p class="description">
+
+
+
+    </p>
+
+
+    <h3>Parameters:</h3>
+    <dl>
+          <dt>
+          <span class="parameter_info">
+            <span class="parameter">index</span>
+          </span>
+          </dt>
+        <dd>
+
+
+
+        </dt>
+        </li>
+    </dl>
+
+    <h3>Returns:</h3>
+    <ol>
+        <li>
+           <span class="types"><span class="type">enet_peer</span></span>
+        The underlying enet peer object.
+        </li>
+    </ol>
+
+
+
+
+</dd>
+</div>
+    <div class="function_def">
+    <a class="anchor_link" href="#Server:getPort" name="Server:getPort">🔗</a>
+    <h3 class="function_name">Server:getPort()</h3>
+    </dt>
+    <dd>
+    <p class="summary">
+    Get the port that the server is hosted on.
+    </p>
+    <p class="description">
+
+
+
+    </p>
+
+
+
+    <h3>Returns:</h3>
+    <ol>
+        <li>
+           <span class="types"><span class="type">number</span></span>
+
+
+
+        </li>
+    </ol>
+
+
+
+
+</dd>
+</div>
+    <div class="function_def">
+    <a class="anchor_link" href="#Server:getSendMode" name="Server:getSendMode">🔗</a>
+    <h3 class="function_name">Server:getSendMode()</h3>
+    </dt>
+    <dd>
+    <p class="summary">
+    Get the current send mode.
+    </p>
+    <p class="description">
+
+
+
+    </p>
+
+
+
+    <h3>Returns:</h3>
+    <ol>
+        <li>
+           <span class="types"><span class="type">string</span></span>
+
+
+
+        </li>
+    </ol>
+
+
+    <h3>See also:</h3>
+    <ul class="see-items">
+    <li>
+        <a href="#SEND_MODES">SEND_MODES</a>
+    </li>
+    </ul>
+
+
+</dd>
+</div>
+    <div class="function_def">
+    <a class="anchor_link" href="#Server:getSocketAddress" name="Server:getSocketAddress">🔗</a>
+    <h3 class="function_name">Server:getSocketAddress()</h3>
+    </dt>
+    <dd>
+    <p class="summary">
+    Get the socket address of the host.
+    </p>
+    <p class="description">
+
+
+
+    </p>
+
+
+
+    <h3>Returns:</h3>
+    <ol>
+        <li>
+           <span class="types"><span class="type">string</span></span>
+        A description of the socket address, in the format
+ "A.B.C.D:port" where A.B.C.D is the IP address of the used socket.
+        </li>
+    </ol>
+
+
+
+
+</dd>
+</div>
+    <div class="function_def">
+    <a class="anchor_link" href="#Server:getTotalReceivedData" name="Server:getTotalReceivedData">🔗</a>
+    <h3 class="function_name">Server:getTotalReceivedData()</h3>
+    </dt>
+    <dd>
+    <p class="summary">
+    Get the total received data since the server was created.
+    </p>
+    <p class="description">
+
+
+
+    </p>
+
+
+
+    <h3>Returns:</h3>
+    <ol>
+        <li>
+           <span class="types"><span class="type">number</span></span>
+        The total received data in bytes.
+        </li>
+    </ol>
+
+
+
+
+</dd>
+</div>
+    <div class="function_def">
+    <a class="anchor_link" href="#Server:getTotalReceivedPackets" name="Server:getTotalReceivedPackets">🔗</a>
+    <h3 class="function_name">Server:getTotalReceivedPackets()</h3>
+    </dt>
+    <dd>
+    <p class="summary">
+    Get the total number of packets (messages) received since the server was created.
+    </p>
+    <p class="description">
+
+
+
+    </p>
+
+
+
+    <h3>Returns:</h3>
+    <ol>
+        <li>
+           <span class="types"><span class="type">number</span></span>
+        The total number of received packets.
+        </li>
+    </ol>
+
+
+    <h3>See also:</h3>
+    <ul class="see-items">
+    <li>
+        <a href="#Server:getTotalSentPackets">Server:getTotalSentPackets</a>
+    </li>
+    </ul>
+
+
+</dd>
+</div>
+    <div class="function_def">
+    <a class="anchor_link" href="#Server:getTotalSentData" name="Server:getTotalSentData">🔗</a>
+    <h3 class="function_name">Server:getTotalSentData()</h3>
+    </dt>
+    <dd>
+    <p class="summary">
+    Get the total sent data since the server was created.
+    </p>
+    <p class="description">
+
+
+
+    </p>
+
+
+
+    <h3>Returns:</h3>
+    <ol>
+        <li>
+           <span class="types"><span class="type">number</span></span>
+        The total sent data in bytes.
+        </li>
+    </ol>
+
+
+
+
+</dd>
+</div>
+    <div class="function_def">
+    <a class="anchor_link" href="#Server:getTotalSentPackets" name="Server:getTotalSentPackets">🔗</a>
+    <h3 class="function_name">Server:getTotalSentPackets()</h3>
+    </dt>
+    <dd>
+    <p class="summary">
+    Get the total number of packets (messages) sent since the server was created.
+    </p>
+    <p class="description">
+     Everytime a message is sent or received, the corresponding figure is incremented.
+ Therefore, this is not necessarily an accurate indicator of how many packets were actually
+ exchanged over the network.
+    </p>
+
+
+
+    <h3>Returns:</h3>
+    <ol>
+        <li>
+           <span class="types"><span class="type">number</span></span>
+        The total number of sent packets.
+        </li>
+    </ol>
+
+
+
+
+</dd>
+</div>
+    <div class="function_def">
+    <a class="anchor_link" href="#Server:log" name="Server:log">🔗</a>
+    <h3 class="function_name">Server:log(event, data)</h3>
+    </dt>
+    <dd>
+    <p class="summary">
+    Log an event.
+    </p>
+    <p class="description">
+     Alias for Server.logger:log.
+    </p>
+
+
+    <h3>Parameters:</h3>
+    <dl>
+          <dt>
+          <span class="parameter_info">
+            <span class="types"><span class="type">string</span></span>
+            <span class="parameter">event</span>
+          </span>
+          </dt>
+        <dd>
+         The type of event that happened.
+        </dt>
+        </li>
+          <dt>
+          <span class="parameter_info">
+            <span class="types"><span class="type">string</span></span>
+            <span class="parameter">data</span>
+          </span>
+          </dt>
+        <dd>
+         The message to log.
+        </dt>
+        </li>
+    </dl>
+
+
+
+
+    <h3>Usage:</h3>
+    <ul>
+        <pre class="example"><span class="keyword">if</span> somethingBadHappened <span class="keyword">then</span>
+    server:log(<span class="string">"error"</span>, <span class="string">"Something bad happened!"</span>)
+<span class="keyword">end</span></pre>
+    </ul>
+
+</dd>
+</div>
+    <div class="function_def">
+    <a class="anchor_link" href="#Server:on" name="Server:on">🔗</a>
+    <h3 class="function_name">Server:on(event, callback)</h3>
+    </dt>
+    <dd>
+    <p class="summary">
+    Add a callback to an event.
+    </p>
+    <p class="description">
+
+
+
+    </p>
+
+
+    <h3>Parameters:</h3>
+    <dl>
+          <dt>
+          <span class="parameter_info">
+            <span class="types"><span class="type">string</span></span>
+            <span class="parameter">event</span>
+          </span>
+          </dt>
+        <dd>
+         The event that will trigger the callback.
+        </dt>
+        </li>
+          <dt>
+          <span class="parameter_info">
+            <span class="types"><span class="type">function</span></span>
+            <span class="parameter">callback</span>
+          </span>
+          </dt>
+        <dd>
+         The callback to be triggered.
+        </dt>
+        </li>
+    </dl>
+
+    <h3>Returns:</h3>
+    <ol>
+        <li>
+           <span class="types"><span class="type">function</span></span>
+        The callback that was passed in.
+        </li>
+    </ol>
+
+
+
+    <h3>Usage:</h3>
+    <ul>
+        <pre class="example">server:on(<span class="string">"connect"</span>, <span class="keyword">function</span>(data, client)
+    <span class="global">print</span>(<span class="string">"Client connected!"</span>)
+<span class="keyword">end</span>)</pre>
+    </ul>
+
+</dd>
+</div>
+    <div class="function_def">
+    <a class="anchor_link" href="#Server:removeCallback" name="Server:removeCallback">🔗</a>
+    <h3 class="function_name">Server:removeCallback(callback)</h3>
+    </dt>
+    <dd>
+    <p class="summary">
+    Remove a specific callback for an event.
+    </p>
+    <p class="description">
+
+
+
+    </p>
+
+
+    <h3>Parameters:</h3>
+    <dl>
+          <dt>
+          <span class="parameter_info">
+            <span class="types"><span class="type">function</span></span>
+            <span class="parameter">callback</span>
+          </span>
+          </dt>
+        <dd>
+         The callback to remove.
+        </dt>
+        </li>
+    </dl>
+
+    <h3>Returns:</h3>
+    <ol>
+        <li>
+           <span class="types"><span class="type">boolean</span></span>
+        Whether or not the callback was removed.
+        </li>
+    </ol>
+
+
+
+    <h3>Usage:</h3>
+    <ul>
+        <pre class="example"><span class="keyword">local</span> callback = server:on(<span class="string">"chatMessage"</span>, <span class="keyword">function</span>(message)
+    <span class="global">print</span>(message)
+<span class="keyword">end</span>)
+server:removeCallback(callback)</pre>
+    </ul>
+
+</dd>
+</div>
+    <div class="function_def">
+    <a class="anchor_link" href="#Server:resetSendSettings" name="Server:resetSendSettings">🔗</a>
+    <h3 class="function_name">Server:resetSendSettings()</h3>
+    </dt>
+    <dd>
+    <p class="summary">
+    Reset all send options to their default values.
+    </p>
+    <p class="description">
+
+
+
+    </p>
+
+
+
+
+
+
+
+</dd>
+</div>
+    <div class="function_def">
+    <a class="anchor_link" href="#Server:sendToAll" name="Server:sendToAll">🔗</a>
+    <h3 class="function_name">Server:sendToAll(event, data)</h3>
+    </dt>
+    <dd>
+    <p class="summary">
+    Send a message to all clients.
+    </p>
+    <p class="description">
+
+
+
+    </p>
+
+
+    <h3>Parameters:</h3>
+    <dl>
+          <dt>
+          <span class="parameter_info">
+            <span class="types"><span class="type">string</span></span>
+            <span class="parameter">event</span>
+          </span>
+          </dt>
+        <dd>
+         The event to trigger with this message.
+        </dt>
+        </li>
+          <dt>
+          <span class="parameter_info">
+            <span class="parameter">data</span>
+          </span>
+          </dt>
+        <dd>
+         The data to send.
+        </dt>
+        </li>
+    </dl>
+
+
+
+
+    <h3>Usage:</h3>
+    <ul>
+        <pre class="example">server:sendToAll(<span class="string">"gameStarting"</span>, <span class="keyword">true</span>)</pre>
+    </ul>
+
+</dd>
+</div>
+    <div class="function_def">
+    <a class="anchor_link" href="#Server:sendToAllBut" name="Server:sendToAllBut">🔗</a>
+    <h3 class="function_name">Server:sendToAllBut(client, event, data)</h3>
+    </dt>
+    <dd>
+    <p class="summary">
+    Send a message to all clients, except one.
+    </p>
+    <p class="description">
+     Useful for when the client does something locally, but other clients
+ need to be updated at the same time. This way avoids duplicating objects by
+ never sending its own event to itself in the first place.
+    </p>
+
+
+    <h3>Parameters:</h3>
+    <dl>
+          <dt>
+          <span class="parameter_info">
+            <span class="types"><a class="type" href="#Client">Client</a></span>
+            <span class="parameter">client</span>
+          </span>
+          </dt>
+        <dd>
+         The client to not receive the message.
+        </dt>
+        </li>
+          <dt>
+          <span class="parameter_info">
+            <span class="types"><span class="type">string</span></span>
+            <span class="parameter">event</span>
+          </span>
+          </dt>
+        <dd>
+         The event to trigger with this message.
+        </dt>
+        </li>
+          <dt>
+          <span class="parameter_info">
+            <span class="parameter">data</span>
+          </span>
+          </dt>
+        <dd>
+         The data to send.
+        </dt>
+        </li>
+    </dl>
+
+
+
+
+
+</dd>
+</div>
+    <div class="function_def">
+    <a class="anchor_link" href="#Server:sendToPeer" name="Server:sendToPeer">🔗</a>
+    <h3 class="function_name">Server:sendToPeer(peer, event, data)</h3>
+    </dt>
+    <dd>
+    <p class="summary">
+    Send a message to a single peer.
+    </p>
+    <p class="description">
+     Useful to send data to a newly connected player
+ without sending to everyone who already received it.
+    </p>
+
+
+    <h3>Parameters:</h3>
+    <dl>
+          <dt>
+          <span class="parameter_info">
+            <span class="types"><span class="type">enet_peer</span></span>
+            <span class="parameter">peer</span>
+          </span>
+          </dt>
+        <dd>
+         The enet peer to receive the message.
+        </dt>
+        </li>
+          <dt>
+          <span class="parameter_info">
+            <span class="types"><span class="type">string</span></span>
+            <span class="parameter">event</span>
+          </span>
+          </dt>
+        <dd>
+         The event to trigger with this message.
+        </dt>
+        </li>
+          <dt>
+          <span class="parameter_info">
+            <span class="parameter">data</span>
+          </span>
+          </dt>
+        <dd>
+         data to send to the peer.
+        </dt>
+        </li>
+    </dl>
+
+
+
+
+    <h3>Usage:</h3>
+    <ul>
+        <pre class="example">server:sendToPeer(peer, <span class="string">"initialGameInfo"</span>, {...})</pre>
+    </ul>
+
+</dd>
+</div>
+    <div class="function_def">
+    <a class="anchor_link" href="#Server:setBandwidthLimit" name="Server:setBandwidthLimit">🔗</a>
+    <h3 class="function_name">Server:setBandwidthLimit(incoming, outgoing)</h3>
+    </dt>
+    <dd>
+    <p class="summary">
+    Set the incoming and outgoing bandwidth limits.
+    </p>
+    <p class="description">
+
+
+
+    </p>
+
+
+    <h3>Parameters:</h3>
+    <dl>
+          <dt>
+          <span class="parameter_info">
+            <span class="types"><span class="type">number</span></span>
+            <span class="parameter">incoming</span>
+          </span>
+          </dt>
+        <dd>
+         The maximum incoming bandwidth in bytes.
+        </dt>
+        </li>
+          <dt>
+          <span class="parameter_info">
+            <span class="types"><span class="type">number</span></span>
+            <span class="parameter">outgoing</span>
+          </span>
+          </dt>
+        <dd>
+         The maximum outgoing bandwidth in bytes.
+        </dt>
+        </li>
+    </dl>
+
+
+
+
+
+</dd>
+</div>
+    <div class="function_def">
+    <a class="anchor_link" href="#Server:setDefaultSendChannel" name="Server:setDefaultSendChannel">🔗</a>
+    <h3 class="function_name">Server:setDefaultSendChannel(channel)</h3>
+    </dt>
+    <dd>
+    <p class="summary">
+    Set the default send channel for all future outgoing messages.
+    </p>
+    <p class="description">
+     The initial default is 0.
+    </p>
+
+
+    <h3>Parameters:</h3>
+    <dl>
+          <dt>
+          <span class="parameter_info">
+            <span class="types"><span class="type">number</span></span>
+            <span class="parameter">channel</span>
+          </span>
+          </dt>
+        <dd>
+         Channel to send data on.
+        </dt>
+        </li>
+    </dl>
+
+
+
+
+
+</dd>
+</div>
+    <div class="function_def">
+    <a class="anchor_link" href="#Server:setDefaultSendMode" name="Server:setDefaultSendMode">🔗</a>
+    <h3 class="function_name">Server:setDefaultSendMode(mode)</h3>
+    </dt>
+    <dd>
+    <p class="summary">
+    Set the default send mode for all future outgoing messages.
+    </p>
+    <p class="description">
+
+ The initial default is "reliable".
+    </p>
+
+
+    <h3>Parameters:</h3>
+    <dl>
+          <dt>
+          <span class="parameter_info">
+            <span class="types"><span class="type">string</span></span>
+            <span class="parameter">mode</span>
+          </span>
+          </dt>
+        <dd>
+         A valid send mode.
+        </dt>
+        </li>
+    </dl>
+
+
+
+    <h3>See also:</h3>
+    <ul class="see-items">
+    <li>
+        <a href="#SEND_MODES">SEND_MODES</a>
+    </li>
+    </ul>
+
+
+</dd>
+</div>
+    <div class="function_def">
+    <a class="anchor_link" href="#Server:setMaxChannels" name="Server:setMaxChannels">🔗</a>
+    <h3 class="function_name">Server:setMaxChannels(limit)</h3>
+    </dt>
+    <dd>
+    <p class="summary">
+    Set the maximum number of channels.
+    </p>
+    <p class="description">
+
+
+
+    </p>
+
+
+    <h3>Parameters:</h3>
+    <dl>
+          <dt>
+          <span class="parameter_info">
+            <span class="types"><span class="type">number</span></span>
+            <span class="parameter">limit</span>
+          </span>
+          </dt>
+        <dd>
+         The maximum number of channels allowed. If it is 0,
+ then the maximum number of channels available on the system will be used.
+        </dt>
+        </li>
+    </dl>
+
+
+
+
+
+</dd>
+</div>
+    <div class="function_def">
+    <a class="anchor_link" href="#Server:setMessageTimeout" name="Server:setMessageTimeout">🔗</a>
+    <h3 class="function_name">Server:setMessageTimeout(timeout)</h3>
+    </dt>
+    <dd>
+    <p class="summary">
+    Set the timeout to wait for packets.
+    </p>
+    <p class="description">
+
+
+
+    </p>
+
+
+    <h3>Parameters:</h3>
+    <dl>
+          <dt>
+          <span class="parameter_info">
+            <span class="types"><span class="type">number</span></span>
+            <span class="parameter">timeout</span>
+          </span>
+          </dt>
+        <dd>
+         Time to wait for incoming packets in milliseconds. The
+ initial default is 0.
+        </dt>
+        </li>
+    </dl>
+
+
+
+
+
+</dd>
+</div>
+    <div class="function_def">
+    <a class="anchor_link" href="#Server:setSchema" name="Server:setSchema">🔗</a>
+    <h3 class="function_name">Server:setSchema(event, schema)</h3>
+    </dt>
+    <dd>
+    <p class="summary">
+    Set the data schema for an event.
+    </p>
+    <p class="description">
+     Schemas allow you to set a specific format that the data will be sent. If the
+ client and server both know the format ahead of time, then the table keys
+ do not have to be sent across the network, which saves bandwidth.
+    </p>
+
+
+    <h3>Parameters:</h3>
+    <dl>
+          <dt>
+          <span class="parameter_info">
+            <span class="types"><span class="type">string</span></span>
+            <span class="parameter">event</span>
+          </span>
+          </dt>
+        <dd>
+         The event to set the data schema for.
+        </dt>
+        </li>
+          <dt>
+          <span class="parameter_info">
+            <span class="types"><span class="type">{string,...}</span></span>
+            <span class="parameter">schema</span>
+          </span>
+          </dt>
+        <dd>
+         The data schema.
+        </dt>
+        </li>
+    </dl>
+
+
+
+
+    <h3>Usage:</h3>
+    <ul>
+        <pre class="example">server = sock.newServer(...)
+client = sock.newClient(...)
+
+<span class="comment">-- Without schemas
+</span>client:send(<span class="string">"update"</span>, {
+    x = <span class="number">4</span>,
+    y = <span class="number">100</span>,
+    vx = -<span class="number">4.5</span>,
+    vy = <span class="number">23.1</span>,
+    rotation = <span class="number">1.4365</span>,
+})
+server:on(<span class="string">"update"</span>, <span class="keyword">function</span>(data, client)
+    <span class="comment">-- data = {
+</span>    <span class="comment">--    x = 4,
+</span>    <span class="comment">--    y = 100,
+</span>    <span class="comment">--    vx = -4.5,
+</span>    <span class="comment">--    vy = 23.1,
+</span>    <span class="comment">--    rotation = 1.4365,
+</span>    <span class="comment">-- }
+</span><span class="keyword">end</span>)
+
+
+<span class="comment">-- With schemas
+</span>server:setSchema(<span class="string">"update"</span>, {
+    <span class="string">"x"</span>,
+    <span class="string">"y"</span>,
+    <span class="string">"vx"</span>,
+    <span class="string">"vy"</span>,
+    <span class="string">"rotation"</span>,
+})
+<span class="comment">-- client no longer has to send the keys, saving bandwidth
+</span>client:send(<span class="string">"update"</span>, {
+    <span class="number">4</span>,
+    <span class="number">100</span>,
+    -<span class="number">4.5</span>,
+    <span class="number">23.1</span>,
+    <span class="number">1.4365</span>,
+})
+server:on(<span class="string">"update"</span>, <span class="keyword">function</span>(data, client)
+    <span class="comment">-- data = {
+</span>    <span class="comment">--    x = 4,
+</span>    <span class="comment">--    y = 100,
+</span>    <span class="comment">--    vx = -4.5,
+</span>    <span class="comment">--    vy = 23.1,
+</span>    <span class="comment">--    rotation = 1.4365,
+</span>    <span class="comment">-- }
+</span><span class="keyword">end</span>)</pre>
+    </ul>
+
+</dd>
+</div>
+    <div class="function_def">
+    <a class="anchor_link" href="#Server:setSendChannel" name="Server:setSendChannel">🔗</a>
+    <h3 class="function_name">Server:setSendChannel(channel)</h3>
+    </dt>
+    <dd>
+    <p class="summary">
+    Set the send channel for the next outgoing message.
+    </p>
+    <p class="description">
+
+ The channel will be reset after the next message. Channels are zero-indexed
+ and cannot exceed the maximum number of channels allocated. The initial
+ default is 0.
+    </p>
+
+
+    <h3>Parameters:</h3>
+    <dl>
+          <dt>
+          <span class="parameter_info">
+            <span class="types"><span class="type">number</span></span>
+            <span class="parameter">channel</span>
+          </span>
+          </dt>
+        <dd>
+         Channel to send data on.
+        </dt>
+        </li>
+    </dl>
+
+
+
+
+    <h3>Usage:</h3>
+    <ul>
+        <pre class="example">server:setSendChannel(<span class="number">2</span>) <span class="comment">-- the third channel
+</span>server:sendToAll(<span class="string">"importantEvent"</span>, <span class="string">"The message"</span>)</pre>
+    </ul>
+
+</dd>
+</div>
+    <div class="function_def">
+    <a class="anchor_link" href="#Server:setSendMode" name="Server:setSendMode">🔗</a>
+    <h3 class="function_name">Server:setSendMode(mode)</h3>
+    </dt>
+    <dd>
+    <p class="summary">
+    Set the send mode for the next outgoing message.
+    </p>
+    <p class="description">
+
+ The mode will be reset after the next message is sent. The initial default
+ is "reliable".
+    </p>
+
+
+    <h3>Parameters:</h3>
+    <dl>
+          <dt>
+          <span class="parameter_info">
+            <span class="types"><span class="type">string</span></span>
+            <span class="parameter">mode</span>
+          </span>
+          </dt>
+        <dd>
+         A valid send mode.
+        </dt>
+        </li>
+    </dl>
+
+
+
+    <h3>See also:</h3>
+    <ul class="see-items">
+    <li>
+        <a href="#SEND_MODES">SEND_MODES</a>
+    </li>
+    </ul>
+
+    <h3>Usage:</h3>
+    <ul>
+        <pre class="example">server:setSendMode(<span class="string">"unreliable"</span>)
+server:sendToAll(<span class="string">"playerState"</span>, {...})</pre>
+    </ul>
+
+</dd>
+</div>
+    <div class="function_def">
+    <a class="anchor_link" href="#Server:setSerialization" name="Server:setSerialization">🔗</a>
+    <h3 class="function_name">Server:setSerialization(serialize, deserialize)</h3>
+    </dt>
+    <dd>
+    <p class="summary">
+    Set the serialization functions for sending and receiving data.
+    </p>
+    <p class="description">
+     Both the client and server must share the same serialization method.
+    </p>
+
+
+    <h3>Parameters:</h3>
+    <dl>
+          <dt>
+          <span class="parameter_info">
+            <span class="types"><span class="type">function</span></span>
+            <span class="parameter">serialize</span>
+          </span>
+          </dt>
+        <dd>
+         The serialization function to use.
+        </dt>
+        </li>
+          <dt>
+          <span class="parameter_info">
+            <span class="types"><span class="type">function</span></span>
+            <span class="parameter">deserialize</span>
+          </span>
+          </dt>
+        <dd>
+         The deserialization function to use.
+        </dt>
+        </li>
+    </dl>
+
+
+
+
+    <h3>Usage:</h3>
+    <ul>
+        <pre class="example">bitser = <span class="global">require</span> <span class="string">"bitser"</span> <span class="comment">-- or any library you like
+</span>server = sock.newServer(<span class="string">"localhost"</span>, <span class="number">22122</span>)
+server:setSerialization(bitser.dumps, bitser.loads)</pre>
+    </ul>
+
+</dd>
+</div>
+    <div class="function_def">
+    <a class="anchor_link" href="#Server:update" name="Server:update">🔗</a>
+    <h3 class="function_name">Server:update()</h3>
+    </dt>
+    <dd>
+    <p class="summary">
+    Check for network events and handle them.
+    </p>
+    <p class="description">
+
+
+
+    </p>
+
+
+
+
+
+
+
+</dd>
+</div>
+</dl>
+</div>
+</section>
+<section class="section" id="Client">
+    <h1 class="section-header has-description"><a name="Class_Client"></a>Class Client </h1>
+    <div class="section-content">
+
+          <p class="section-description">
+          Connects to servers.
+          </p>
+    <dl class="function">
+    <div class="function_def">
+    <a class="anchor_link" href="#Client:connect" name="Client:connect">🔗</a>
+    <h3 class="function_name">Client:connect(code)</h3>
+    </dt>
+    <dd>
+    <p class="summary">
+    Connect to the chosen server.
+    </p>
+    <p class="description">
+     Connection will not actually occur until the next time <a href="#Client:update">Client:update</a> is called.
+    </p>
+
+
+    <h3>Parameters:</h3>
+    <dl>
+          <dt>
+          <span class="parameter_info">
+            <span class="types">optional <span class="type">number</span></span>
+            <span class="parameter">code</span>
+          </span>
+          </dt>
+        <dd>
+         A number that can be associated with the connect event.
+        </dt>
+        </li>
+    </dl>
+
+
+
+
+
+</dd>
+</div>
+    <div class="function_def">
+    <a class="anchor_link" href="#Client:disconnect" name="Client:disconnect">🔗</a>
+    <h3 class="function_name">Client:disconnect(code)</h3>
+    </dt>
+    <dd>
+    <p class="summary">
+    Disconnect from the server, if connected.
+    </p>
+    <p class="description">
+     The client will disconnect the
+ next time that network messages are sent.
+    </p>
+
+
+    <h3>Parameters:</h3>
+    <dl>
+          <dt>
+          <span class="parameter_info">
+            <span class="types">optional <span class="type">number</span></span>
+            <span class="parameter">code</span>
+          </span>
+          </dt>
+        <dd>
+         A code to associate with this disconnect event.
+        </dt>
+        </li>
+    </dl>
+
+
+
+
+
+</dd>
+</div>
+    <div class="function_def">
+    <a class="anchor_link" href="#Client:disconnectLater" name="Client:disconnectLater">🔗</a>
+    <h3 class="function_name">Client:disconnectLater(code)</h3>
+    </dt>
+    <dd>
+    <p class="summary">
+    Disconnect from the server, if connected.
+    </p>
+    <p class="description">
+     The client will disconnect after
+ sending all queued packets.
+    </p>
+
+
+    <h3>Parameters:</h3>
+    <dl>
+          <dt>
+          <span class="parameter_info">
+            <span class="types">optional <span class="type">number</span></span>
+            <span class="parameter">code</span>
+          </span>
+          </dt>
+        <dd>
+         A code to associate with this disconnect event.
+        </dt>
+        </li>
+    </dl>
+
+
+
+
+
+</dd>
+</div>
+    <div class="function_def">
+    <a class="anchor_link" href="#Client:disconnectNow" name="Client:disconnectNow">🔗</a>
+    <h3 class="function_name">Client:disconnectNow(code)</h3>
+    </dt>
+    <dd>
+    <p class="summary">
+    Disconnect from the server, if connected.
+    </p>
+    <p class="description">
+     The client will disconnect immediately.
+    </p>
+
+
+    <h3>Parameters:</h3>
+    <dl>
+          <dt>
+          <span class="parameter_info">
+            <span class="types">optional <span class="type">number</span></span>
+            <span class="parameter">code</span>
+          </span>
+          </dt>
+        <dd>
+         A code to associate with this disconnect event.
+        </dt>
+        </li>
+    </dl>
+
+
+
+
+
+</dd>
+</div>
+    <div class="function_def">
+    <a class="anchor_link" href="#Client:enableCompression" name="Client:enableCompression">🔗</a>
+    <h3 class="function_name">Client:enableCompression()</h3>
+    </dt>
+    <dd>
+    <p class="summary">
+    Enables an adaptive order-2 PPM range coder for the transmitted data of all peers.
+    </p>
+    <p class="description">
+     Both the client and server must both either have compression enabled or disabled.</p>
+
+<p> Note: lua-enet does not currently expose a way to disable the compression after it has been enabled.
+    </p>
+
+
+
+
+
+
+
+</dd>
+</div>
+    <div class="function_def">
+    <a class="anchor_link" href="#Client:getAddress" name="Client:getAddress">🔗</a>
+    <h3 class="function_name">Client:getAddress()</h3>
+    </dt>
+    <dd>
+    <p class="summary">
+    Get the IP address or hostname that the client was created with.
+    </p>
+    <p class="description">
+
+
+
+    </p>
+
+
+
+    <h3>Returns:</h3>
+    <ol>
+        <li>
+           <span class="types"><span class="type">string</span></span>
+
+
+
+        </li>
+    </ol>
+
+
+
+
+</dd>
+</div>
+    <div class="function_def">
+    <a class="anchor_link" href="#Client:getConnectId" name="Client:getConnectId">🔗</a>
+    <h3 class="function_name">Client:getConnectId()</h3>
+    </dt>
+    <dd>
+    <p class="summary">
+    Get the unique connection id, if connected.
+    </p>
+    <p class="description">
+
+
+
+    </p>
+
+
+
+    <h3>Returns:</h3>
+    <ol>
+        <li>
+           <span class="types"><span class="type">number</span></span>
+        The connection id.
+        </li>
+    </ol>
+
+
+
+
+</dd>
+</div>
+    <div class="function_def">
+    <a class="anchor_link" href="#Client:getDefaultSendMode" name="Client:getDefaultSendMode">🔗</a>
+    <h3 class="function_name">Client:getDefaultSendMode()</h3>
+    </dt>
+    <dd>
+    <p class="summary">
+    Get the default send mode.
+    </p>
+    <p class="description">
+
+
+
+    </p>
+
+
+
+    <h3>Returns:</h3>
+    <ol>
+        <li>
+           <span class="types"><span class="type">string</span></span>
+
+
+
+        </li>
+    </ol>
+
+
+    <h3>See also:</h3>
+    <ul class="see-items">
+    <li>
+        <a href="#SEND_MODES">SEND_MODES</a>
+    </li>
+    </ul>
+
+
+</dd>
+</div>
+    <div class="function_def">
+    <a class="anchor_link" href="#Client:getIndex" name="Client:getIndex">🔗</a>
+    <h3 class="function_name">Client:getIndex()</h3>
+    </dt>
+    <dd>
+    <p class="summary">
+    Get the index of the enet peer.
+    </p>
+    <p class="description">
+     All peers of an ENet host are kept in an array. This function finds and returns the index of the peer of its host structure.
+    </p>
+
+
+
+    <h3>Returns:</h3>
+    <ol>
+        <li>
+           <span class="types"><span class="type">number</span></span>
+        The index of the peer.
+        </li>
+    </ol>
+
+
+
+
+</dd>
+</div>
+    <div class="function_def">
+    <a class="anchor_link" href="#Client:getLastServiceTime" name="Client:getLastServiceTime">🔗</a>
+    <h3 class="function_name">Client:getLastServiceTime()</h3>
+    </dt>
+    <dd>
+    <p class="summary">
+    Get the last time when network events were serviced.
+    </p>
+    <p class="description">
+
+
+
+    </p>
+
+
+
+    <h3>Returns:</h3>
+    <ol>
+        <li>
+           <span class="types"><span class="type">number</span></span>
+        Timestamp of the last time events were serviced.
+        </li>
+    </ol>
+
+
+
+
+</dd>
+</div>
+    <div class="function_def">
+    <a class="anchor_link" href="#Client:getMaxChannels" name="Client:getMaxChannels">🔗</a>
+    <h3 class="function_name">Client:getMaxChannels()</h3>
+    </dt>
+    <dd>
+    <p class="summary">
+    Get the number of allocated channels.
+    </p>
+    <p class="description">
+     Channels are zero-indexed, e.g. 16 channels allocated means that the
+ maximum channel that can be used is 15.
+    </p>
+
+
+
+    <h3>Returns:</h3>
+    <ol>
+        <li>
+           <span class="types"><span class="type">number</span></span>
+        Number of allocated channels.
+        </li>
+    </ol>
+
+
+
+
+</dd>
+</div>
+    <div class="function_def">
+    <a class="anchor_link" href="#Client:getMessageTimeout" name="Client:getMessageTimeout">🔗</a>
+    <h3 class="function_name">Client:getMessageTimeout()</h3>
+    </dt>
+    <dd>
+    <p class="summary">
+    Get the timeout for packets.
+    </p>
+    <p class="description">
+
+
+
+    </p>
+
+
+
+    <h3>Returns:</h3>
+    <ol>
+        <li>
+           <span class="types"><span class="type">number</span></span>
+        Time to wait for incoming packets in milliseconds.
+ initial default is 0.
+        </li>
+    </ol>
+
+
+
+
+</dd>
+</div>
+    <div class="function_def">
+    <a class="anchor_link" href="#Client:getPeerByIndex" name="Client:getPeerByIndex">🔗</a>
+    <h3 class="function_name">Client:getPeerByIndex(index)</h3>
+    </dt>
+    <dd>
+    <p class="summary">
+    Get the enet_peer that has the given index.
+    </p>
+    <p class="description">
+
+
+
+    </p>
+
+
+    <h3>Parameters:</h3>
+    <dl>
+          <dt>
+          <span class="parameter_info">
+            <span class="parameter">index</span>
+          </span>
+          </dt>
+        <dd>
+
+
+
+        </dt>
+        </li>
+    </dl>
+
+    <h3>Returns:</h3>
+    <ol>
+        <li>
+           <span class="types"><span class="type">enet_peer</span></span>
+        The underlying enet peer object.
+        </li>
+    </ol>
+
+
+
+
+</dd>
+</div>
+    <div class="function_def">
+    <a class="anchor_link" href="#Client:getPort" name="Client:getPort">🔗</a>
+    <h3 class="function_name">Client:getPort()</h3>
+    </dt>
+    <dd>
+    <p class="summary">
+    Get the port that the client is connecting to.
+    </p>
+    <p class="description">
+
+
+
+    </p>
+
+
+
+    <h3>Returns:</h3>
+    <ol>
+        <li>
+           <span class="types"><span class="type">number</span></span>
+
+
+
+        </li>
+    </ol>
+
+
+
+
+</dd>
+</div>
+    <div class="function_def">
+    <a class="anchor_link" href="#Client:getRoundTripTime" name="Client:getRoundTripTime">🔗</a>
+    <h3 class="function_name">Client:getRoundTripTime()</h3>
+    </dt>
+    <dd>
+    <p class="summary">
+    Return the round trip time (RTT, or ping) to the server, if connected.
+    </p>
+    <p class="description">
+     It can take a few seconds for the time to approach an accurate value.
+    </p>
+
+
+
+    <h3>Returns:</h3>
+    <ol>
+        <li>
+           <span class="types"><span class="type">number</span></span>
+        The round trip time.
+        </li>
+    </ol>
+
+
+
+
+</dd>
+</div>
+    <div class="function_def">
+    <a class="anchor_link" href="#Client:getSendMode" name="Client:getSendMode">🔗</a>
+    <h3 class="function_name">Client:getSendMode()</h3>
+    </dt>
+    <dd>
+    <p class="summary">
+    Get the current send mode.
+    </p>
+    <p class="description">
+
+
+
+    </p>
+
+
+
+    <h3>Returns:</h3>
+    <ol>
+        <li>
+           <span class="types"><span class="type">string</span></span>
+
+
+
+        </li>
+    </ol>
+
+
+    <h3>See also:</h3>
+    <ul class="see-items">
+    <li>
+        <a href="#SEND_MODES">SEND_MODES</a>
+    </li>
+    </ul>
+
+
+</dd>
+</div>
+    <div class="function_def">
+    <a class="anchor_link" href="#Client:getSocketAddress" name="Client:getSocketAddress">🔗</a>
+    <h3 class="function_name">Client:getSocketAddress()</h3>
+    </dt>
+    <dd>
+    <p class="summary">
+    Get the socket address of the host.
+    </p>
+    <p class="description">
+
+
+
+    </p>
+
+
+
+    <h3>Returns:</h3>
+    <ol>
+        <li>
+           <span class="types"><span class="type">string</span></span>
+        A description of the socket address, in the format "A.B.C.D:port" where A.B.C.D is the IP address of the used socket.
+        </li>
+    </ol>
+
+
+
+
+</dd>
+</div>
+    <div class="function_def">
+    <a class="anchor_link" href="#Client:getState" name="Client:getState">🔗</a>
+    <h3 class="function_name">Client:getState()</h3>
+    </dt>
+    <dd>
+    <p class="summary">
+    Get the current connection state, if connected.
+    </p>
+    <p class="description">
+
+
+
+    </p>
+
+
+
+    <h3>Returns:</h3>
+    <ol>
+        <li>
+           <span class="types"><span class="type">string</span></span>
+        The connection state.
+        </li>
+    </ol>
+
+
+    <h3>See also:</h3>
+    <ul class="see-items">
+    <li>
+        <a href="#CONNECTION_STATES">CONNECTION_STATES</a>
+    </li>
+    </ul>
+
+
+</dd>
+</div>
+    <div class="function_def">
+    <a class="anchor_link" href="#Client:getTotalReceivedData" name="Client:getTotalReceivedData">🔗</a>
+    <h3 class="function_name">Client:getTotalReceivedData()</h3>
+    </dt>
+    <dd>
+    <p class="summary">
+    Get the total received data since the server was created.
+    </p>
+    <p class="description">
+
+
+
+    </p>
+
+
+
+    <h3>Returns:</h3>
+    <ol>
+        <li>
+           <span class="types"><span class="type">number</span></span>
+        The total received data in bytes.
+        </li>
+    </ol>
+
+
+
+
+</dd>
+</div>
+    <div class="function_def">
+    <a class="anchor_link" href="#Client:getTotalReceivedPackets" name="Client:getTotalReceivedPackets">🔗</a>
+    <h3 class="function_name">Client:getTotalReceivedPackets()</h3>
+    </dt>
+    <dd>
+    <p class="summary">
+    Get the total number of packets (messages) received since the client was created.
+    </p>
+    <p class="description">
+
+
+
+    </p>
+
+
+
+    <h3>Returns:</h3>
+    <ol>
+        <li>
+           <span class="types"><span class="type">number</span></span>
+        The total number of received packets.
+        </li>
+    </ol>
+
+
+    <h3>See also:</h3>
+    <ul class="see-items">
+    <li>
+        <a href="#Client:getTotalSentPackets">Client:getTotalSentPackets</a>
+    </li>
+    </ul>
+
+
+</dd>
+</div>
+    <div class="function_def">
+    <a class="anchor_link" href="#Client:getTotalSentData" name="Client:getTotalSentData">🔗</a>
+    <h3 class="function_name">Client:getTotalSentData()</h3>
+    </dt>
+    <dd>
+    <p class="summary">
+    Get the total sent data since the server was created.
+    </p>
+    <p class="description">
+
+
+
+    </p>
+
+
+
+    <h3>Returns:</h3>
+    <ol>
+        <li>
+           <span class="types"><span class="type">number</span></span>
+        The total sent data in bytes.
+        </li>
+    </ol>
+
+
+
+
+</dd>
+</div>
+    <div class="function_def">
+    <a class="anchor_link" href="#Client:getTotalSentPackets" name="Client:getTotalSentPackets">🔗</a>
+    <h3 class="function_name">Client:getTotalSentPackets()</h3>
+    </dt>
+    <dd>
+    <p class="summary">
+    Get the total number of packets (messages) sent since the client was created.
+    </p>
+    <p class="description">
+     Everytime a message is sent or received, the corresponding figure is incremented.
+ Therefore, this is not necessarily an accurate indicator of how many packets were actually
+ exchanged over the network.
+    </p>
+
+
+
+    <h3>Returns:</h3>
+    <ol>
+        <li>
+           <span class="types"><span class="type">number</span></span>
+        The total number of sent packets.
+        </li>
+    </ol>
+
+
+
+
+</dd>
+</div>
+    <div class="function_def">
+    <a class="anchor_link" href="#Client:isConnected" name="Client:isConnected">🔗</a>
+    <h3 class="function_name">Client:isConnected()</h3>
+    </dt>
+    <dd>
+    <p class="summary">
+    Gets whether the client is connected to the server.
+    </p>
+    <p class="description">
+
+
+
+    </p>
+
+
+
+    <h3>Returns:</h3>
+    <ol>
+        <li>
+           <span class="types"><span class="type">boolean</span></span>
+        Whether the client is connected to the server.
+        </li>
+    </ol>
+
+
+
+    <h3>Usage:</h3>
+    <ul>
+        <pre class="example">client:connect()
+client:isConnected() <span class="comment">-- false
+</span><span class="comment">-- After a few client updates
+</span>client:isConnected() <span class="comment">-- true</span></pre>
+    </ul>
+
+</dd>
+</div>
+    <div class="function_def">
+    <a class="anchor_link" href="#Client:isConnecting" name="Client:isConnecting">🔗</a>
+    <h3 class="function_name">Client:isConnecting()</h3>
+    </dt>
+    <dd>
+    <p class="summary">
+    Gets whether the client is connecting to the server.
+    </p>
+    <p class="description">
+
+
+
+    </p>
+
+
+
+    <h3>Returns:</h3>
+    <ol>
+        <li>
+           <span class="types"><span class="type">boolean</span></span>
+        Whether the client is connected to the server.
+        </li>
+    </ol>
+
+
+
+    <h3>Usage:</h3>
+    <ul>
+        <pre class="example">client:connect()
+client:isConnecting() <span class="comment">-- true
+</span><span class="comment">-- After a few client updates
+</span>client:isConnecting() <span class="comment">-- false
+</span>client:isConnected() <span class="comment">-- true</span></pre>
+    </ul>
+
+</dd>
+</div>
+    <div class="function_def">
+    <a class="anchor_link" href="#Client:isDisconnected" name="Client:isDisconnected">🔗</a>
+    <h3 class="function_name">Client:isDisconnected()</h3>
+    </dt>
+    <dd>
+    <p class="summary">
+    Gets whether the client is disconnected from the server.
+    </p>
+    <p class="description">
+
+
+
+    </p>
+
+
+
+    <h3>Returns:</h3>
+    <ol>
+        <li>
+           <span class="types"><span class="type">boolean</span></span>
+        Whether the client is connected to the server.
+        </li>
+    </ol>
+
+
+
+    <h3>Usage:</h3>
+    <ul>
+        <pre class="example">client:disconnect()
+client:isDisconnected() <span class="comment">-- false
+</span><span class="comment">-- After a few client updates
+</span>client:isDisconnected() <span class="comment">-- true</span></pre>
+    </ul>
+
+</dd>
+</div>
+    <div class="function_def">
+    <a class="anchor_link" href="#Client:isDisconnecting" name="Client:isDisconnecting">🔗</a>
+    <h3 class="function_name">Client:isDisconnecting()</h3>
+    </dt>
+    <dd>
+    <p class="summary">
+    Gets whether the client is disconnecting from the server.
+    </p>
+    <p class="description">
+
+
+
+    </p>
+
+
+
+    <h3>Returns:</h3>
+    <ol>
+        <li>
+           <span class="types"><span class="type">boolean</span></span>
+        Whether the client is connected to the server.
+        </li>
+    </ol>
+
+
+
+    <h3>Usage:</h3>
+    <ul>
+        <pre class="example">client:disconnect()
+client:isDisconnecting() <span class="comment">-- true
+</span><span class="comment">-- After a few client updates
+</span>client:isDisconnecting() <span class="comment">-- false
+</span>client:isDisconnected() <span class="comment">-- true</span></pre>
+    </ul>
+
+</dd>
+</div>
+    <div class="function_def">
+    <a class="anchor_link" href="#Client:log" name="Client:log">🔗</a>
+    <h3 class="function_name">Client:log(event, data)</h3>
+    </dt>
+    <dd>
+    <p class="summary">
+    Log an event.
+    </p>
+    <p class="description">
+     Alias for Client.logger:log.
+    </p>
+
+
+    <h3>Parameters:</h3>
+    <dl>
+          <dt>
+          <span class="parameter_info">
+            <span class="types"><span class="type">string</span></span>
+            <span class="parameter">event</span>
+          </span>
+          </dt>
+        <dd>
+         The type of event that happened.
+        </dt>
+        </li>
+          <dt>
+          <span class="parameter_info">
+            <span class="types"><span class="type">string</span></span>
+            <span class="parameter">data</span>
+          </span>
+          </dt>
+        <dd>
+         The message to log.
+        </dt>
+        </li>
+    </dl>
+
+
+
+
+    <h3>Usage:</h3>
+    <ul>
+        <pre class="example"><span class="keyword">if</span> somethingBadHappened <span class="keyword">then</span>
+    client:log(<span class="string">"error"</span>, <span class="string">"Something bad happened!"</span>)
+<span class="keyword">end</span></pre>
+    </ul>
+
+</dd>
+</div>
+    <div class="function_def">
+    <a class="anchor_link" href="#Client:on" name="Client:on">🔗</a>
+    <h3 class="function_name">Client:on(event, callback)</h3>
+    </dt>
+    <dd>
+    <p class="summary">
+    Add a callback to an event.
+    </p>
+    <p class="description">
+
+
+
+    </p>
+
+
+    <h3>Parameters:</h3>
+    <dl>
+          <dt>
+          <span class="parameter_info">
+            <span class="types"><span class="type">string</span></span>
+            <span class="parameter">event</span>
+          </span>
+          </dt>
+        <dd>
+         The event that will trigger the callback.
+        </dt>
+        </li>
+          <dt>
+          <span class="parameter_info">
+            <span class="types"><span class="type">function</span></span>
+            <span class="parameter">callback</span>
+          </span>
+          </dt>
+        <dd>
+         The callback to be triggered.
+        </dt>
+        </li>
+    </dl>
+
+    <h3>Returns:</h3>
+    <ol>
+        <li>
+           <span class="types"><span class="type">function</span></span>
+        The callback that was passed in.
+        </li>
+    </ol>
+
+
+
+    <h3>Usage:</h3>
+    <ul>
+        <pre class="example">client:on(<span class="string">"connect"</span>, <span class="keyword">function</span>(data)
+    <span class="global">print</span>(<span class="string">"Connected to the server!"</span>)
+<span class="keyword">end</span>)</pre>
+    </ul>
+
+</dd>
+</div>
+    <div class="function_def">
+    <a class="anchor_link" href="#Client:removeCallback" name="Client:removeCallback">🔗</a>
+    <h3 class="function_name">Client:removeCallback(callback)</h3>
+    </dt>
+    <dd>
+    <p class="summary">
+    Remove a specific callback for an event.
+    </p>
+    <p class="description">
+
+
+
+    </p>
+
+
+    <h3>Parameters:</h3>
+    <dl>
+          <dt>
+          <span class="parameter_info">
+            <span class="types"><span class="type">function</span></span>
+            <span class="parameter">callback</span>
+          </span>
+          </dt>
+        <dd>
+         The callback to remove.
+        </dt>
+        </li>
+    </dl>
+
+    <h3>Returns:</h3>
+    <ol>
+        <li>
+           <span class="types"><span class="type">boolean</span></span>
+        Whether or not the callback was removed.
+        </li>
+    </ol>
+
+
+
+    <h3>Usage:</h3>
+    <ul>
+        <pre class="example"><span class="keyword">local</span> callback = client:on(<span class="string">"chatMessage"</span>, <span class="keyword">function</span>(message)
+    <span class="global">print</span>(message)
+<span class="keyword">end</span>)
+client:removeCallback(callback)</pre>
+    </ul>
+
+</dd>
+</div>
+    <div class="function_def">
+    <a class="anchor_link" href="#Client:reset" name="Client:reset">🔗</a>
+    <h3 class="function_name">Client:reset(client)</h3>
+    </dt>
+    <dd>
+    <p class="summary">
+    Forcefully disconnects the client.
+    </p>
+    <p class="description">
+     The server is not notified of the disconnection.
+    </p>
+
+
+    <h3>Parameters:</h3>
+    <dl>
+          <dt>
+          <span class="parameter_info">
+            <span class="types"><a class="type" href="#Client">Client</a></span>
+            <span class="parameter">client</span>
+          </span>
+          </dt>
+        <dd>
+         The client to reset.
+        </dt>
+        </li>
+    </dl>
+
+
+
+
+
+</dd>
+</div>
+    <div class="function_def">
+    <a class="anchor_link" href="#Client:resetSendSettings" name="Client:resetSendSettings">🔗</a>
+    <h3 class="function_name">Client:resetSendSettings()</h3>
+    </dt>
+    <dd>
+    <p class="summary">
+    Reset all send options to their default values.
+    </p>
+    <p class="description">
+
+
+
+    </p>
+
+
+
+
+
+
+
+</dd>
+</div>
+    <div class="function_def">
+    <a class="anchor_link" href="#Client:send" name="Client:send">🔗</a>
+    <h3 class="function_name">Client:send(event, data)</h3>
+    </dt>
+    <dd>
+    <p class="summary">
+    Send a message to the server.
+    </p>
+    <p class="description">
+
+
+
+    </p>
+
+
+    <h3>Parameters:</h3>
+    <dl>
+          <dt>
+          <span class="parameter_info">
+            <span class="types"><span class="type">string</span></span>
+            <span class="parameter">event</span>
+          </span>
+          </dt>
+        <dd>
+         The event to trigger with this message.
+        </dt>
+        </li>
+          <dt>
+          <span class="parameter_info">
+            <span class="parameter">data</span>
+          </span>
+          </dt>
+        <dd>
+         The data to send.
+        </dt>
+        </li>
+    </dl>
+
+
+
+
+
+</dd>
+</div>
+    <div class="function_def">
+    <a class="anchor_link" href="#Client:setBandwidthLimit" name="Client:setBandwidthLimit">🔗</a>
+    <h3 class="function_name">Client:setBandwidthLimit(incoming, outgoing)</h3>
+    </dt>
+    <dd>
+    <p class="summary">
+    Set the incoming and outgoing bandwidth limits.
+    </p>
+    <p class="description">
+
+
+
+    </p>
+
+
+    <h3>Parameters:</h3>
+    <dl>
+          <dt>
+          <span class="parameter_info">
+            <span class="types"><span class="type">number</span></span>
+            <span class="parameter">incoming</span>
+          </span>
+          </dt>
+        <dd>
+         The maximum incoming bandwidth in bytes.
+        </dt>
+        </li>
+          <dt>
+          <span class="parameter_info">
+            <span class="types"><span class="type">number</span></span>
+            <span class="parameter">outgoing</span>
+          </span>
+          </dt>
+        <dd>
+         The maximum outgoing bandwidth in bytes.
+        </dt>
+        </li>
+    </dl>
+
+
+
+
+
+</dd>
+</div>
+    <div class="function_def">
+    <a class="anchor_link" href="#Client:setDefaultSendChannel" name="Client:setDefaultSendChannel">🔗</a>
+    <h3 class="function_name">Client:setDefaultSendChannel(channel)</h3>
+    </dt>
+    <dd>
+    <p class="summary">
+    Set the default send channel for all future outgoing messages.
+    </p>
+    <p class="description">
+     The initial default is 0.
+    </p>
+
+
+    <h3>Parameters:</h3>
+    <dl>
+          <dt>
+          <span class="parameter_info">
+            <span class="types"><span class="type">number</span></span>
+            <span class="parameter">channel</span>
+          </span>
+          </dt>
+        <dd>
+         Channel to send data on.
+        </dt>
+        </li>
+    </dl>
+
+
+
+
+
+</dd>
+</div>
+    <div class="function_def">
+    <a class="anchor_link" href="#Client:setDefaultSendMode" name="Client:setDefaultSendMode">🔗</a>
+    <h3 class="function_name">Client:setDefaultSendMode(mode)</h3>
+    </dt>
+    <dd>
+    <p class="summary">
+    Set the default send mode for all future outgoing messages.
+    </p>
+    <p class="description">
+
+ The initial default is "reliable".
+    </p>
+
+
+    <h3>Parameters:</h3>
+    <dl>
+          <dt>
+          <span class="parameter_info">
+            <span class="types"><span class="type">string</span></span>
+            <span class="parameter">mode</span>
+          </span>
+          </dt>
+        <dd>
+         A valid send mode.
+        </dt>
+        </li>
+    </dl>
+
+
+
+    <h3>See also:</h3>
+    <ul class="see-items">
+    <li>
+        <a href="#SEND_MODES">SEND_MODES</a>
+    </li>
+    </ul>
+
+
+</dd>
+</div>
+    <div class="function_def">
+    <a class="anchor_link" href="#Client:setMaxChannels" name="Client:setMaxChannels">🔗</a>
+    <h3 class="function_name">Client:setMaxChannels(limit)</h3>
+    </dt>
+    <dd>
+    <p class="summary">
+    Set the maximum number of channels.
+    </p>
+    <p class="description">
+
+
+
+    </p>
+
+
+    <h3>Parameters:</h3>
+    <dl>
+          <dt>
+          <span class="parameter_info">
+            <span class="types"><span class="type">number</span></span>
+            <span class="parameter">limit</span>
+          </span>
+          </dt>
+        <dd>
+         The maximum number of channels allowed. If it is 0,
+ then the maximum number of channels available on the system will be used.
+        </dt>
+        </li>
+    </dl>
+
+
+
+
+
+</dd>
+</div>
+    <div class="function_def">
+    <a class="anchor_link" href="#Client:setMessageTimeout" name="Client:setMessageTimeout">🔗</a>
+    <h3 class="function_name">Client:setMessageTimeout(timeout)</h3>
+    </dt>
+    <dd>
+    <p class="summary">
+    Set the timeout to wait for packets.
+    </p>
+    <p class="description">
+
+
+
+    </p>
+
+
+    <h3>Parameters:</h3>
+    <dl>
+          <dt>
+          <span class="parameter_info">
+            <span class="types"><span class="type">number</span></span>
+            <span class="parameter">timeout</span>
+          </span>
+          </dt>
+        <dd>
+         Time to wait for incoming packets in milliseconds. The initial
+ default is 0.
+        </dt>
+        </li>
+    </dl>
+
+
+
+
+
+</dd>
+</div>
+    <div class="function_def">
+    <a class="anchor_link" href="#Client:setPingInterval" name="Client:setPingInterval">🔗</a>
+    <h3 class="function_name">Client:setPingInterval(interval)</h3>
+    </dt>
+    <dd>
+    <p class="summary">
+    Set how frequently to ping the server.
+    </p>
+    <p class="description">
+     The round trip time is updated each time a ping is sent. The initial
+ default is 500ms.
+    </p>
+
+
+    <h3>Parameters:</h3>
+    <dl>
+          <dt>
+          <span class="parameter_info">
+            <span class="types"><span class="type">number</span></span>
+            <span class="parameter">interval</span>
+          </span>
+          </dt>
+        <dd>
+         The interval, in milliseconds.
+        </dt>
+        </li>
+    </dl>
+
+
+
+
+
+</dd>
+</div>
+    <div class="function_def">
+    <a class="anchor_link" href="#Client:setSchema" name="Client:setSchema">🔗</a>
+    <h3 class="function_name">Client:setSchema(event, schema)</h3>
+    </dt>
+    <dd>
+    <p class="summary">
+    Set the data schema for an event.
+    </p>
+    <p class="description">
+     Schemas allow you to set a specific format that the data will be sent. If the
+ client and server both know the format ahead of time, then the table keys
+ do not have to be sent across the network, which saves bandwidth.
+    </p>
+
+
+    <h3>Parameters:</h3>
+    <dl>
+          <dt>
+          <span class="parameter_info">
+            <span class="types"><span class="type">string</span></span>
+            <span class="parameter">event</span>
+          </span>
+          </dt>
+        <dd>
+         The event to set the data schema for.
+        </dt>
+        </li>
+          <dt>
+          <span class="parameter_info">
+            <span class="types"><span class="type">{string,...}</span></span>
+            <span class="parameter">schema</span>
+          </span>
+          </dt>
+        <dd>
+         The data schema.
+        </dt>
+        </li>
+    </dl>
+
+
+
+
+    <h3>Usage:</h3>
+    <ul>
+        <pre class="example">server = sock.newServer(...)
+client = sock.newClient(...)
+
+<span class="comment">-- Without schemas
+</span>server:send(<span class="string">"update"</span>, {
+    x = <span class="number">4</span>,
+    y = <span class="number">100</span>,
+    vx = -<span class="number">4.5</span>,
+    vy = <span class="number">23.1</span>,
+    rotation = <span class="number">1.4365</span>,
+})
+client:on(<span class="string">"update"</span>, <span class="keyword">function</span>(data)
+    <span class="comment">-- data = {
+</span>    <span class="comment">--    x = 4,
+</span>    <span class="comment">--    y = 100,
+</span>    <span class="comment">--    vx = -4.5,
+</span>    <span class="comment">--    vy = 23.1,
+</span>    <span class="comment">--    rotation = 1.4365,
+</span>    <span class="comment">-- }
+</span><span class="keyword">end</span>)
+
+
+<span class="comment">-- With schemas
+</span>client:setSchema(<span class="string">"update"</span>, {
+    <span class="string">"x"</span>,
+    <span class="string">"y"</span>,
+    <span class="string">"vx"</span>,
+    <span class="string">"vy"</span>,
+    <span class="string">"rotation"</span>,
+})
+<span class="comment">-- client no longer has to send the keys, saving bandwidth
+</span>server:send(<span class="string">"update"</span>, {
+    <span class="number">4</span>,
+    <span class="number">100</span>,
+    -<span class="number">4.5</span>,
+    <span class="number">23.1</span>,
+    <span class="number">1.4365</span>,
+})
+client:on(<span class="string">"update"</span>, <span class="keyword">function</span>(data)
+    <span class="comment">-- data = {
+</span>    <span class="comment">--    x = 4,
+</span>    <span class="comment">--    y = 100,
+</span>    <span class="comment">--    vx = -4.5,
+</span>    <span class="comment">--    vy = 23.1,
+</span>    <span class="comment">--    rotation = 1.4365,
+</span>    <span class="comment">-- }
+</span><span class="keyword">end</span>)</pre>
+    </ul>
+
+</dd>
+</div>
+    <div class="function_def">
+    <a class="anchor_link" href="#Client:setSendChannel" name="Client:setSendChannel">🔗</a>
+    <h3 class="function_name">Client:setSendChannel(channel)</h3>
+    </dt>
+    <dd>
+    <p class="summary">
+    Set the send channel for the next outgoing message.
+    </p>
+    <p class="description">
+
+ The channel will be reset after the next message. Channels are zero-indexed
+ and cannot exceed the maximum number of channels allocated. The initial
+ default is 0.
+    </p>
+
+
+    <h3>Parameters:</h3>
+    <dl>
+          <dt>
+          <span class="parameter_info">
+            <span class="types"><span class="type">number</span></span>
+            <span class="parameter">channel</span>
+          </span>
+          </dt>
+        <dd>
+         Channel to send data on.
+        </dt>
+        </li>
+    </dl>
+
+
+
+
+    <h3>Usage:</h3>
+    <ul>
+        <pre class="example">client:setSendChannel(<span class="number">2</span>) <span class="comment">-- the third channel
+</span>client:send(<span class="string">"important"</span>, <span class="string">"The message"</span>)</pre>
+    </ul>
+
+</dd>
+</div>
+    <div class="function_def">
+    <a class="anchor_link" href="#Client:setSendMode" name="Client:setSendMode">🔗</a>
+    <h3 class="function_name">Client:setSendMode(mode)</h3>
+    </dt>
+    <dd>
+    <p class="summary">
+    Set the send mode for the next outgoing message.
+    </p>
+    <p class="description">
+
+ The mode will be reset after the next message is sent. The initial default
+ is "reliable".
+    </p>
+
+
+    <h3>Parameters:</h3>
+    <dl>
+          <dt>
+          <span class="parameter_info">
+            <span class="types"><span class="type">string</span></span>
+            <span class="parameter">mode</span>
+          </span>
+          </dt>
+        <dd>
+         A valid send mode.
+        </dt>
+        </li>
+    </dl>
+
+
+
+    <h3>See also:</h3>
+    <ul class="see-items">
+    <li>
+        <a href="#SEND_MODES">SEND_MODES</a>
+    </li>
+    </ul>
+
+    <h3>Usage:</h3>
+    <ul>
+        <pre class="example">client:setSendMode(<span class="string">"unreliable"</span>)
+client:send(<span class="string">"position"</span>, {...})</pre>
+    </ul>
+
+</dd>
+</div>
+    <div class="function_def">
+    <a class="anchor_link" href="#Client:setSerialization" name="Client:setSerialization">🔗</a>
+    <h3 class="function_name">Client:setSerialization(serialize, deserialize)</h3>
+    </dt>
+    <dd>
+    <p class="summary">
+    Set the serialization functions for sending and receiving data.
+    </p>
+    <p class="description">
+     Both the client and server must share the same serialization method.
+    </p>
+
+
+    <h3>Parameters:</h3>
+    <dl>
+          <dt>
+          <span class="parameter_info">
+            <span class="types"><span class="type">function</span></span>
+            <span class="parameter">serialize</span>
+          </span>
+          </dt>
+        <dd>
+         The serialization function to use.
+        </dt>
+        </li>
+          <dt>
+          <span class="parameter_info">
+            <span class="types"><span class="type">function</span></span>
+            <span class="parameter">deserialize</span>
+          </span>
+          </dt>
+        <dd>
+         The deserialization function to use.
+        </dt>
+        </li>
+    </dl>
+
+
+
+
+    <h3>Usage:</h3>
+    <ul>
+        <pre class="example">bitser = <span class="global">require</span> <span class="string">"bitser"</span> <span class="comment">-- or any library you like
+</span>client = sock.newClient(<span class="string">"localhost"</span>, <span class="number">22122</span>)
+client:setSerialization(bitser.dumps, bitser.loads)</pre>
+    </ul>
+
+</dd>
+</div>
+    <div class="function_def">
+    <a class="anchor_link" href="#Client:setThrottle" name="Client:setThrottle">🔗</a>
+    <h3 class="function_name">Client:setThrottle(interval, acceleration, deceleration)</h3>
+    </dt>
+    <dd>
+    <p class="summary">
+    Change the probability at which unreliable packets should not be dropped.
+    </p>
+    <p class="description">
+
+
+
+    </p>
+
+
+    <h3>Parameters:</h3>
+    <dl>
+          <dt>
+          <span class="parameter_info">
+            <span class="types"><span class="type">number</span></span>
+            <span class="parameter">interval</span>
+          </span>
+          </dt>
+        <dd>
+         Interval, in milliseconds, over which to measure lowest mean RTT. (default: 5000ms)
+        </dt>
+        </li>
+          <dt>
+          <span class="parameter_info">
+            <span class="types"><span class="type">number</span></span>
+            <span class="parameter">acceleration</span>
+          </span>
+          </dt>
+        <dd>
+         Rate at which to increase the throttle probability as mean RTT declines. (default: 2)
+        </dt>
+        </li>
+          <dt>
+          <span class="parameter_info">
+            <span class="types"><span class="type">number</span></span>
+            <span class="parameter">deceleration</span>
+          </span>
+          </dt>
+        <dd>
+         Rate at which to decrease the throttle probability as mean RTT increases.
+        </dt>
+        </li>
+    </dl>
+
+
+
+
+
+</dd>
+</div>
+    <div class="function_def">
+    <a class="anchor_link" href="#Client:setTimeout" name="Client:setTimeout">🔗</a>
+    <h3 class="function_name">Client:setTimeout(limit, minimum, maximum)</h3>
+    </dt>
+    <dd>
+    <p class="summary">
+    Set the parameters for attempting to reconnect if a timeout is detected.
+    </p>
+    <p class="description">
+
+
+
+    </p>
+
+
+    <h3>Parameters:</h3>
+    <dl>
+          <dt>
+          <span class="parameter_info">
+            <span class="types">optional <span class="type">number</span></span>
+            <span class="parameter">limit</span>
+          </span>
+          </dt>
+        <dd>
+         A factor that is multiplied with a value that based on the average round trip time to compute the timeout limit. (default: 32)
+        </dt>
+        </li>
+          <dt>
+          <span class="parameter_info">
+            <span class="types">optional <span class="type">number</span></span>
+            <span class="parameter">minimum</span>
+          </span>
+          </dt>
+        <dd>
+         Timeout value in milliseconds that a reliable packet has to be acknowledged if the variable timeout limit was exceeded. (default: 5000)
+        </dt>
+        </li>
+          <dt>
+          <span class="parameter_info">
+            <span class="types">optional <span class="type">number</span></span>
+            <span class="parameter">maximum</span>
+          </span>
+          </dt>
+        <dd>
+         Fixed timeout in milliseconds for which any packet has to be acknowledged.
+        </dt>
+        </li>
+    </dl>
+
+
+
+
+
+</dd>
+</div>
+    <div class="function_def">
+    <a class="anchor_link" href="#Client:update" name="Client:update">🔗</a>
+    <h3 class="function_name">Client:update()</h3>
+    </dt>
+    <dd>
+    <p class="summary">
+    Check for network events and handle them.
+    </p>
+    <p class="description">
+
+
+
+    </p>
+
+
+
+
+
+
+
+</dd>
+</div>
+</dl>
+</div>
+</section>
+<section class="section" id="sock">
+    <h1 class="section-header "><a name="sock"></a>sock</h1>
+    <div class="section-content">
+
+    <dl class="function">
+    <div class="function_def">
+    <a class="anchor_link" href="#newClient" name="newClient">🔗</a>
+    <h3 class="function_name">newClient(serverOrAddress, port, maxChannels)</h3>
+    </dt>
+    <dd>
+    <p class="summary">
+    Creates a new Client instance.
+    </p>
+    <p class="description">
+
+
+
+    </p>
+
+
+    <h3>Parameters:</h3>
+    <dl>
+          <dt>
+          <span class="parameter_info">
+            <span class="types">optional <span class="type">string/peer</span></span>
+            <span class="parameter">serverOrAddress</span>
+          </span>
+          </dt>
+        <dd>
+         Usually the IP address or hostname to connect to. It can also be an enet peer. (default: "localhost")
+        </dt>
+        </li>
+          <dt>
+          <span class="parameter_info">
+            <span class="types">optional <span class="type">number</span></span>
+            <span class="parameter">port</span>
+          </span>
+          </dt>
+        <dd>
+         Port number of the server to connect to. (default: 22122)
+        </dt>
+        </li>
+          <dt>
+          <span class="parameter_info">
+            <span class="types">optional <span class="type">number</span></span>
+            <span class="parameter">maxChannels</span>
+          </span>
+          </dt>
+        <dd>
+         Maximum channels available to send and receive data. (default: 1)
+        </dt>
+        </li>
+    </dl>
+
+    <h3>Returns:</h3>
+    <ol>
+        <li>
+        A new Client object.
+        </li>
+    </ol>
+
+
+    <h3>See also:</h3>
+    <ul class="see-items">
+    <li>
+        <a href="#Client">Client</a>
+    </li>
+    </ul>
+
+    <h3>Usage:</h3>
+    <ul>
+        <pre class="example"><span class="keyword">local</span> sock = <span class="global">require</span> <span class="string">"sock"</span>
+
+ <span class="comment">-- Client that will connect to localhost:22122 (by default)
+</span>client = sock.newClient()
+
+ <span class="comment">-- Client that will connect to localhost:1234
+</span>client = sock.newClient(<span class="string">"localhost"</span>, <span class="number">1234</span>)
+
+ <span class="comment">-- Client that will connect to 123.45.67.89:1234, using two channels
+</span> <span class="comment">-- NOTE: Server must also allocate two channels!
+</span>client = sock.newClient(<span class="string">"123.45.67.89"</span>, <span class="number">1234</span>, <span class="number">2</span>)</pre>
+    </ul>
+
+</dd>
+</div>
+    <div class="function_def">
+    <a class="anchor_link" href="#newServer" name="newServer">🔗</a>
+    <h3 class="function_name">newServer(address, port, maxPeers, maxChannels, inBandwidth, outBandwidth)</h3>
+    </dt>
+    <dd>
+    <p class="summary">
+    Creates a new Server object.
+    </p>
+    <p class="description">
+
+
+
+    </p>
+
+
+    <h3>Parameters:</h3>
+    <dl>
+          <dt>
+          <span class="parameter_info">
+            <span class="types">optional <span class="type">string</span></span>
+            <span class="parameter">address</span>
+          </span>
+          </dt>
+        <dd>
+         Hostname or IP address to bind to. (default: "localhost")
+        </dt>
+        </li>
+          <dt>
+          <span class="parameter_info">
+            <span class="types">optional <span class="type">number</span></span>
+            <span class="parameter">port</span>
+          </span>
+          </dt>
+        <dd>
+         Port to listen to for data. (default: 22122)
+        </dt>
+        </li>
+          <dt>
+          <span class="parameter_info">
+            <span class="types">optional <span class="type">number</span></span>
+            <span class="parameter">maxPeers</span>
+          </span>
+          </dt>
+        <dd>
+         Maximum peers that can connect to the server. (default: 64)
+        </dt>
+        </li>
+          <dt>
+          <span class="parameter_info">
+            <span class="types">optional <span class="type">number</span></span>
+            <span class="parameter">maxChannels</span>
+          </span>
+          </dt>
+        <dd>
+         Maximum channels available to send and receive data. (default: 1)
+        </dt>
+        </li>
+          <dt>
+          <span class="parameter_info">
+            <span class="types">optional <span class="type">number</span></span>
+            <span class="parameter">inBandwidth</span>
+          </span>
+          </dt>
+        <dd>
+         Maximum incoming bandwidth (default: 0)
+        </dt>
+        </li>
+          <dt>
+          <span class="parameter_info">
+            <span class="types">optional <span class="type">number</span></span>
+            <span class="parameter">outBandwidth</span>
+          </span>
+          </dt>
+        <dd>
+         Maximum outgoing bandwidth (default: 0)
+        </dt>
+        </li>
+    </dl>
+
+    <h3>Returns:</h3>
+    <ol>
+        <li>
+        A new Server object.
+        </li>
+    </ol>
+
+
+    <h3>See also:</h3>
+    <ul class="see-items">
+    <li>
+        <a href="#Server">Server</a>
+    </li>
+    </ul>
+
+    <h3>Usage:</h3>
+    <ul>
+        <pre class="example"><span class="keyword">local</span> sock = <span class="global">require</span> <span class="string">"sock"</span>
+
+ <span class="comment">-- Local server hosted on localhost:22122 (by default)
+</span>server = sock.newServer()
+
+ <span class="comment">-- Local server only, on port 1234
+</span>server = sock.newServer(<span class="string">"localhost"</span>, <span class="number">1234</span>)
+
+ <span class="comment">-- Server hosted on static IP 123.45.67.89, on port 22122
+</span>server = sock.newServer(<span class="string">"123.45.67.89"</span>, <span class="number">22122</span>)
+
+ <span class="comment">-- Server hosted on any IP, on port 22122
+</span>server = sock.newServer(<span class="string">"*"</span>, <span class="number">22122</span>)
+
+ <span class="comment">-- Limit peers to 10, channels to 2
+</span>server = sock.newServer(<span class="string">"*"</span>, <span class="number">22122</span>, <span class="number">10</span>, <span class="number">2</span>)
+
+ <span class="comment">-- Limit incoming/outgoing bandwidth to 1kB/s (1000 bytes/s)
+</span>server = sock.newServer(<span class="string">"*"</span>, <span class="number">22122</span>, <span class="number">10</span>, <span class="number">2</span>, <span class="number">1000</span>, <span class="number">1000</span>)</pre>
+    </ul>
+
+</dd>
+</div>
+</dl>
+</div>
+</section>
+
+
+</div> <!-- id="content" -->
+</div> <!-- id="main" -->
+<div id="about">
+<i>Generated by <a href="http://github.com/stevedonovan/LDoc">LDoc 1.4.3</a></i>
+<i style="float:right;">Last updated 2017-07-24 20:20:49 </i>
+</div> <!-- id="about" -->
+</div> <!-- id="container" -->
+</body>
+</html>

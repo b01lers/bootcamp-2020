@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>The Grid</title>
+    <script src="{{ url_for('static', filename='js/maze.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/jquery-3.5.1.min.js') }}"></script>
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='css/maze.css') }}"
+    />
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='css/tron.css') }}"
+    />
+  </head>
+  <body>
+    <div id="horizontal_wrapper">
+      <div id="maze-grid" class="maze-grid"></div>
+      <div id="controls">
+        <table>
+          <tr>
+            <td></td>
+            <td>
+              <button onClick="move_up()">Up</button>
+            </td>
+            <td></td>
+          </tr>
+          <tr>
+            <td>
+              <button onClick="move_left()">Left</button>
+            </td>
+            <td></td>
+            <td>
+              <button onClick="move_right()">Right</button>
+            </td>
+          </tr>
+          <tr>
+            <td></td>
+            <td>
+              <button onClick="move_down()">Down</button>
+            </td>
+            <td></td>
+          </tr>
+        </table>
+      </div>
+    </div>
+    <p id="token" style="display:none"></p>
+  </body>
+</html>

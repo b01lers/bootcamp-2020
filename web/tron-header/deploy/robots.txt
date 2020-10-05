@@ -1,0 +1,9 @@
+User-agent: *
+Disallow: /
+
+User-agent: Program
+Allow: /program/
+
+User-agent: Master Control Program 0000
+Allow: /program/control
+

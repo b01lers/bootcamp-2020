@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Welcome.</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='css/tron.css') }}"
+    />
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='css/style.css') }}"
+    />
+  </head>
+
+  <body style="background-color: black">
+    <div id="main-wrapper">
+      <div class="content-page">
+        <div>
+          <h1>Welcome '{{ user_agent }}' to The Grid.</h1>
+        </div>
+      </div>
+
+      <div class="horizontal_wrapper">
+        <div>
+          <a href="/tron_city">
+            <h2>Tron City</h2>
+            <img
+              src="{{ url_for('static', filename='img/tron_city.jpg') }}"
+              alt="tron city"
+            />
+          </a>
+        </div>
+        <div>
+          <a href="/sea_of_simulation">
+            <h2>Sea of Simulation</h2>
+            <img
+              src="{{ url_for('static', filename='img/SeaofSim01.webp') }}"
+              alt="sea_of_simulation"
+            />
+          </a>
+        </div>
+      </div>
+
+      <div class="horizontal_wrapper">
+        <div>
+          <a href="/disc_arena">
+            <h2>Disc Arena</h2>
+            <img
+              src="{{ url_for('static', filename='img/disc_war.png') }}"
+              alt="disc arena"
+            />
+            <!-- from: https://www.deviantart.com/thepr0crastin80r/art/Tron-Legacy-SFM-Disc-Battle-737958125&psig=AOvVaw3jD_KhH4MDPoqSCBxj_OVH&ust=1600969105064000&source=images&cd=vfe&ved=0CA0QjhxqFwoTCMjv3_Lo_-sCFQAAAAAdAAAAABAD -->
+          </a>
+        </div>
+        <div>
+          <a href="/0001001_club">
+            <h2>0001001 Club</h2>
+            <img
+              src="{{ url_for('static', filename='img/0001001_Club.webp') }}"
+              alt="0001001 Club"
+            />
+          </a>
+        </div>
+      </div>
+
+      <div class="horizontal_wrapper">
+        <div>
+          <a href="/portal">
+            <h2>Portal</h2>
+            <img
+              src="{{ url_for('static', filename='img/portal.webp') }}"
+              alt="portal"
+            />
+          </a>
+        </div>
+        <!--
+        <div>
+          <a href="/program">
+            <h2>Program's Only</h2>
+            <img src="{{ url_for('static', filename='img/programs_only.jpg') }}" alt="00101010" />
+          </a>
+        </div>
+        -->
+      </div>
+    </div>
+  </body>
+</html>

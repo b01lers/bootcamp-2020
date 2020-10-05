@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Program database.</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='css/tron.css') }}"
+    />
+  </head>
+
+  <body>
+    <div id="main-wrapper">
+      <div class="content-page">
+        <div>
+          <h1>Program database.</h1>
+        </div>
+
+        <div class="row">
+          <div class="search">
+            <h3>Search:</h3>
+
+            <form action="/" method="post" id="search">
+              <input type="text" name="query" style="width:80%" id="input" />
+              <button type="submit">Search</button>
+            </form>
+          </div>
+        </div>
+
+        <div class="row">
+          {% if results %}
+          <h3>Query Results:</h3>
+          <table class="table">
+            <tbody>
+              {% for row in results %}
+              <tr>
+                {% for col in row %}
+                <td>{{col}}</td>
+                {% endfor %}
+              </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+          {% elif error %}
+          <h3>Error: {{error}}</h3>
+          {% else %} {% endif %}
+        </div>
+      </div>
+
+      <div class="keyboard" style="margin: auto">
+        <script type="text/javascript">
+          (function() {
+            var row = function(left, keys, right) {
+              return [left].concat(keys.split(""), [right]);
+            };
+
+            var keyboard = [
+              row("1", "234567890-", "Back"),
+
+              row("Tab", "qertyuip<", ">"),
+
+              row("a", "sdfghjkl;", "Ret"),
+
+              row("z", "xcvbnm,.", "/"),
+
+              ["          SPACE          "]
+            ];
+
+            var letters = "1234567890qwertyuiopasdfghjklzxcvbnm";
+
+            for (var i = 0; i < keyboard.length; i++) {
+              var keys = keyboard[i];
+
+              document.write('<div class="keyboard-row">');
+
+              for (var j = 0; j < keys.length; j++) {
+                document.write(
+                  '<div class="keyboard-key" onclick="keyboard(this)">' +
+                    keys[j].toUpperCase().replace(/ /g, "&nbsp;") +
+                    "</div>"
+                );
+              }
+
+              document.write("</div>");
+            }
+          })();
+
+          function keyboard(context) {
+            key = context.innerHTML;
+            if (key === "BACK") {
+              input.value = input.value.substr(0, input.value.length - 1);
+              return;
+            } else if (key === "TAB") {
+              key = "\t";
+            } else if (key.includes("SPACE")) {
+              key = " ";
+            } else if (key === "RET") {
+              document.getElementById("search").submit();
+              return;
+            } else if (key === "&lt;") {
+               key = "<";
+            } else if (key === "&gt;") {
+               key = ">";
+            }
+            input = document.getElementById("input");
+            input.value += key;
+          }
+        </script>
+      </div>
+    </div>
+  </body>
+</html>

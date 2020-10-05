@@ -1,0 +1,29 @@
+{ "frames": {
+   "fire_arm.aseprite": {
+    "frame": { "x": 0, "y": 0, "w": 32, "h": 48 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 32, "h": 48 },
+    "sourceSize": { "w": 32, "h": 48 },
+    "duration": 100
+   }
+ },
+ "meta": {
+  "app": "http://www.aseprite.org/",
+  "version": "1.2.21-x64",
+  "image": "fire_arm.png",
+  "format": "RGBA8888",
+  "size": { "w": 32, "h": 48 },
+  "scale": "1",
+  "frameTags": [
+  ],
+  "layers": [
+   { "name": "Legs", "opacity": 255, "blendMode": "normal" },
+   { "name": "Body", "opacity": 255, "blendMode": "normal" },
+   { "name": "Arm", "opacity": 255, "blendMode": "normal" },
+   { "name": "Hair", "opacity": 255, "blendMode": "normal" }
+  ],
+  "slices": [
+  ]
+ }
+}

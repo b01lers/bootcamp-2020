@@ -1,0 +1,255 @@
+<html>
+<head>
+</head>
+<body style="background-color: #202020">
+
+<style>
+/* http://meyerweb.com/eric/tools/css/reset/ 
+   v2.0 | 20110126
+   License: none (public domain)
+*/
+
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed, 
+figure, figcaption, footer, header, hgroup, 
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+	vertical-align: baseline;
+}
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure, 
+footer, header, hgroup, menu, nav, section {
+	display: block;
+}
+body {
+	line-height: 1;
+}
+ol, ul {
+	list-style: none;
+}
+blockquote, q {
+	quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+	content: '';
+	content: none;
+}
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+
+/* now do ours */
+
+html, body {
+  height: 100%;
+}
+/* FF scrollbars */
+* { 
+  scrollbar-width: thin;
+  scrollbar-color: #735c10 #392e08;
+}
+/* Chrome scrollbars */
+*::-webkit-scrollbar {
+      width: 12px;               
+}
+*::-webkit-scrollbar-track {
+      background: #392e08;
+}
+*::-webkit-scrollbar-thumb {
+      background-color: #735c10;
+      /* border-radius: 20px; */
+      /* border: 3px solid orange;   */
+}
+*::-webkit-scrollbar-corner {
+  background: rgba(0,0,0,0);
+}
+div-page {
+   position: absolute;
+   box-sizing: border-box;
+   width: 100%;
+   height: 100%;
+   color: #e0e0a0;
+}
+.div-exits {
+   position: absolute;
+   /* height: 4%; */
+   top: calc(5% + 3px);
+   right: calc(5% + 3px);
+   padding: 5px;
+   /* text */
+   color: #e6b800;
+   background-color: #202020;
+   font-family: monospace;
+   opacity: 1;
+   /* border */
+   border-style: solid;
+   border-width: 3px;  /* cannot be % */
+   border-color: #735c10; e6b800
+}
+.pre-log {
+   /* dimensions */
+   position: absolute;
+   top: 5%;
+   left: 5%;
+   width: 90%;
+   height: 60%;
+   padding: 2%;
+   padding-bottom: 1%;
+   box-sizing: border-box;
+   /* text */
+   color: #e6b800;
+   font-family: monospace;
+   /* white-space: nowrap; */
+   overflow-x: auto;
+   overflow-y: auto;
+   /* border */
+   border-style: solid;
+   border-width: 3px;  /* cannot be % */
+   border-color: #e6b800;
+}
+.div-input {
+   /* dimensions */
+   position: absolute;
+   top: 67%;
+   left: 5%;
+   width: 90%;
+   height: 30%;
+   padding: 2%;
+   box-sizing: border-box;
+   /* border */
+   border-style: solid;
+   border-width: 3px;  /* cannot be % */
+   border-color: #e6b800;
+}
+.TA-input {
+   position: relative;
+   height: 100%;
+   width: 100%;
+   /* text */   
+   color: #e6b800;
+   background-color: #1c170c;
+   font-family: monospace;
+   overflow-y: auto;
+   word-break: break-all;
+   resize: none;
+   /* border */
+   border-color: #392e10;
+}
+</style>
+
+
+<script>
+"use strict";
+
+var token = "{{ token }}";
+var state = null;
+var hash  = null;
+var logPRE = null;
+var exitsDIV = null;
+var inputTA  = null;
+
+var helpString =  "  solving:  answer value1 value2 ...  (or ans value1 value2 ...)\n"
+                + "  movement: north, east, south, west (or n, e, s, w)\n"
+                + "  RESET:    restore current area to Level 1\n"
+                + "  help:     you know this one already";
+
+function useAPI(comm) {
+   var xhttp = new XMLHttpRequest();
+   xhttp.onreadystatechange = function() {
+      if (this.readyState == 4 && this.status == 200) {
+         var res = JSON.parse(xhttp.responseText);
+         var st = res["state"];
+         if (st !== undefined) state = st;
+         var h = res["state_hash"];
+         if (h !== undefined) hash = h;
+         else hash = null;
+         var reply = res["reply"];    // process replies first
+         if (reply !== undefined) log(reply)
+         var desc = res["desc"];
+         if (desc !== undefined) log("\n" + desc, false);
+         var exits = res["exits"]
+         if (exits !== undefined) exitsDIV.innerText = "Exits: " + exits;
+      }
+   }
+   var args = "?token=" + token;
+   if (state !== null) args += "&state=" + state;
+   if (hash !== null) args += "&state_hash=" + hash;
+   if (comm !== undefined) args += "&comm=" + comm;
+   xhttp.open( "GET", "/api" + args, true);
+   xhttp.send(null);
+}
+
+
+function log(txt, scroll = true) {
+   var prevScrollHeight = logPRE.scrollHeight
+   logPRE.innerText += txt + "\n";
+   var maxTop = logPRE.scrollHeight - logPRE.clientHeight;
+   if (scroll) logPRE.scrollTop = maxTop;
+   else if (prevScrollHeight > logPRE.clientHeight) { // scroll to top of new text
+      var top = prevScrollHeight;
+      logPRE.scrollTop = (top < maxTop) ? top : maxTop;
+   }
+}
+
+function keyListener(event) {
+   if (event.which === 0xd) {
+      // reduce server load
+      var comm = event.target.value.trim();
+      if (comm !== "") {         
+         log("> " + comm);
+         if (comm.includes("help")) log(helpString)
+         else useAPI(comm);
+         event.target.value = "";
+      }
+   }
+   if (event.which < 0x20 || event.which > 0x7f) {
+      event.preventDefault();
+   }
+}
+
+
+function init() {
+   logPRE = document.getElementById("logPRE");
+   exitsDIV = document.getElementById("exitsDIV");
+   inputTA = document.getElementById("inputTA");
+   inputTA.addEventListener("keypress", keyListener);
+   useAPI();
+}
+
+window.onload = init;
+</script>
+
+
+<div class="div-page">
+
+<pre class="pre-log" id="logPRE">
+</pre>
+
+<div class="div-exits" id="exitsDIV">Exits: n, e, w</div> 
+
+<div class="div-input">
+<textarea class="TA-input" id="inputTA" wrap="soft"></textarea>
+</div>
+
+
+</div>
+
+
+
+</body>
+</html>

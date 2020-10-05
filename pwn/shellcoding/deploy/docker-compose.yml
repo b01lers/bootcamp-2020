@@ -1,0 +1,23 @@
+version: "3.7"
+services:
+    shellcoding:
+        container_name: shellcoding
+        build:
+            dockerfile: ./deploy/Dockerfile
+            context: ../
+        logging:
+            driver: "json-file"
+        ports:
+            - "1007:1337"
+    shellcoding-build:
+        container_name: shellcoding-build
+        build:
+            dockerfile: ./deploy/Dockerfile-build
+            context: ../
+        logging:
+            driver: "json-file"
+        volumes:
+            - build:/home/shellcoding/build
+volumes:
+    build:
+        name: shellcoding-build

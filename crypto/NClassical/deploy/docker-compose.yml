@@ -1,0 +1,11 @@
+version: "3.7"
+services:
+    totem:
+        container_name: totem 
+        build:
+            dockerfile: ./deploy/Dockerfile
+            context: ../
+        logging:
+            driver: "json-file"
+        ports:
+            - "2007:1337"

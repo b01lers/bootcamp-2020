@@ -1,0 +1,2 @@
+check process love with pidfile /var/run/love.pid
+    start program = "/usr/bin/love /app/"

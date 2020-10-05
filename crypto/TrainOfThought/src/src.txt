@@ -1,0 +1,21 @@
+flag{anorganizedmind}
+
+1;14;15;18;7;1;14;9;26;5;4;13;9;14;4
+
+(00) dream
+(01) dreams
+(14) fantasticalities
+(15) a
+(18) neuropharmacologist
+(07) neuropharmacy
+(01) neuroharmacy
+(14) psychopathologic
+(09) oneirologic
+(26) dichlorodiphenyltrichloroethane
+(05) dichlorodiphenyltrichloroe
+(04) chlorophenyltrichloroe
+(13) chloromethanes
+(09) fluorines
+(14) cytodifferentiated
+(04) differentiated
+

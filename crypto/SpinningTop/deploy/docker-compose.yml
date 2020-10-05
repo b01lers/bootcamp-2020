@@ -1,0 +1,11 @@
+version: "3.7"
+services:
+    spinningtop:
+        container_name: spinningtop
+        build:
+            dockerfile: ./deploy/Dockerfile
+            context: ../
+        logging:
+            driver: "json-file"
+        ports:
+            - "2007:1337"

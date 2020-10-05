@@ -1,0 +1,11 @@
+version: "3.7"
+services:
+    crypto_training:
+        container_name: crypto_training
+        build:
+            dockerfile: ./deploy/Dockerfile
+            context: ../
+        logging:
+            driver: "json-file"
+        ports:
+            - "1337:5000"

@@ -1,0 +1,23 @@
+version: "3.7"
+services:
+    theoracle:
+        container_name: theoracle
+        build:
+            dockerfile: ./deploy/Dockerfile
+            context: ../
+        logging:
+            driver: "json-file"
+        ports:
+            - "1015:1337"
+    theoracle-build:
+        container_name: theoracle-build
+        build:
+            dockerfile: ./deploy/Dockerfile-build
+            context: ../
+        logging:
+            driver: "json-file"
+        volumes:
+            - build:/home/theoracle/build
+volumes:
+    build:
+        name: theoracle-build

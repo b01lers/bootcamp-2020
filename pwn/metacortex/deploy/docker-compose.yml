@@ -1,0 +1,23 @@
+version: "3.7"
+services:
+    metacortex:
+        container_name: metacortex
+        build:
+            dockerfile: ./deploy/Dockerfile
+            context: ../
+        logging:
+            driver: "json-file"
+        ports:
+            - "1014:1337"
+    metacortex-build:
+        container_name: metacortex-build
+        build:
+            dockerfile: ./deploy/Dockerfile-build
+            context: ../
+        logging:
+            driver: "json-file"
+        volumes:
+            - build:/home/metacortex/build
+volumes:
+    build:
+        name: metacortex-build

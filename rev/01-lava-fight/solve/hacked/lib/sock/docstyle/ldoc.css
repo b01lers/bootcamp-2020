@@ -1,0 +1,223 @@
+/*
+ * Tag styles
+ */
+body {
+    box-sizing: border-box;
+    margin: 0;
+    color: #222;
+    font-size: 1.8em;
+}
+
+ul, ol {
+    list-style-type: disc;
+}
+
+pre {
+    background-color: #f7f7f7;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    box-shadow: 0px 2px 1px #eee;
+    padding: 10px;
+    margin: 10px 0 10px 0;
+    overflow: auto;
+}
+
+p {
+    max-width: 70ch;
+}
+
+a {
+    color: #07f;
+    text-decoration: none;
+}
+/* make the target distinct; helps when we're navigating to a function */
+a:target + * {
+    background-color: #fff824;
+}
+
+/*
+ * Class styles
+ */
+.header {
+    background: #56CCF2;  /* fallback for old browsers */
+    background: -webkit-linear-gradient(to right, #2F80ED, #56CCF2);  /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to right, #2F80ED, #56CCF2); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    color: #fff;
+    text-align: center;
+    padding: 4rem;
+}
+
+.project-title {
+    margin: 0;
+}
+
+#main {
+    padding: 1.5rem;
+    background: #fff;
+}
+
+#navigation {
+    float: left;
+    width: 12.5rem;
+    vertical-align: top;
+    overflow: visible;
+}
+
+/* Sidebar */
+.sidebar {
+    flex: 1 0 40rem;
+    z-index: 99;
+    transition: all 0.2s ease;
+}
+#sidebar_toggle {
+    display: none;
+}
+.sidebar_toggle_label {
+    display: flex;
+    position: fixed;
+    justify-content: center;
+    align-items: center;
+    z-index: 999;
+    width: 3rem;
+    height: 3rem;
+    margin: 0.5rem;
+    background-color: #eee;
+    border: 1px solid #bbb;
+    border-radius: 3px;
+    opacity: 1;
+    cursor: pointer;
+}
+.sidebar_toggle:checked ~ .sidebar {
+    z-index: -1;
+    transform: translateX(-100%);
+    opacity: 0;
+}
+.sidebar_toggle:checked ~ .contents {
+    transform: translateX(0);
+    margin-right: 0;
+}
+.sidebar_toggle_label:before {
+    content: '◀';
+}
+.sidebar_toggle:checked + .sidebar_toggle_label:before {
+    content: '▶';
+}
+
+.table-of-contents {
+    position: fixed;
+    overflow-y: scroll;
+    top: 0;
+    bottom: 0;
+    width: 40rem;
+    padding: 1.5rem;
+    padding-top: 4rem;
+    background: #f7f7f7;
+}
+
+.contents {
+    transition: transform 0.2s ease;
+    transform: translateX(40rem);
+    margin-right: 40rem;
+}
+
+.section {
+    margin-top: 3rem;
+}
+.section-header {
+    font-weight: bold;
+    border-bottom: 1px solid #ccc;
+    margin-top: 8rem;
+}
+.section-description {
+}
+.section-content {
+    padding-left: 1rem;
+}
+
+.function_def {
+    margin-top: 2.5rem;
+}
+.function_def:first-child {
+    margin-top: 0;
+}
+
+.function_def li {
+    padding-bottom: 4px;
+}
+
+.function_name {
+    display: inline-block;
+    font-weight: 400;
+}
+
+.anchor_link {
+    font-size: 85%;
+}
+.anchor_link:focus {
+}
+
+.type {
+    font-weight: bolder;
+    font-style: italic;
+}
+.parameter_info .type {
+    font-weight: bold;
+}
+
+.parameter_info {
+    background: #f7f7f7;
+    padding: 5px;
+    font-family: monospace;
+}
+
+/*
+ * Syntax highlighting
+ */
+pre .comment {      color: #3a3432; font-style: italic; }
+pre .constant {     color: #01a252; }
+pre .string {       color: #01a252; }
+pre .number {       color: #01a252; }
+pre .escape {       color: #844631; }
+pre .library {      color: #0e7c6b; }
+pre .marker {       color: #512b1e; background: #fedc56; }
+pre .operator {     color: #4a4543; }
+pre .keyword {      color: #a16a94; }
+pre .user-keyword { color: #01a0e4; }
+pre .preprocessor,
+pre .prepro {       color: #db2d20; }
+pre .global {       color: #db2d20; }
+pre .prompt {       color: #558817; }
+pre .url {          color: #272fc2; text-decoration: underline; }
+
+/* print rules */
+@media print {
+    body {
+        font: 12pt "Times New Roman", "TimeNR", Times, serif;
+    }
+    a { font-weight: bold; color: #004080; text-decoration: underline; }
+
+    #main {
+        background-color: #ffffff;
+        border-left: 0px;
+    }
+
+    #container {
+        margin-left: 2%;
+        margin-right: 2%;
+        background-color: #ffffff;
+    }
+
+    #content {
+        padding: 1em;
+        background-color: #ffffff;
+    }
+
+    #navigation {
+        display: none;
+    }
+    pre.example {
+        font-family: "Droid Sans Mono", "Consolas", "Andale Mono", monospace;
+        font-size: 10pt;
+        page-break-inside: avoid;
+    }
+}

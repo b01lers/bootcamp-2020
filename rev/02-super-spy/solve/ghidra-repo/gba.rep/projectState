@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<PROJECT>
+    <PROJECT_TOOL_CONFIG NAME="FRONTEND">
+        <TOOL_CONFIG CONFIG_NAME="NO_LONGER_USED">
+            <ICON LOCATION="view_detailed.png" />
+            <TOOL TOOL_NAME="Ghidra: gba" INSTANCE_NAME="">
+                <OPTIONS />
+                <PACKAGE NAME="Ghidra Core" />
+                <PLUGIN_STATE CLASS="ghidra.plugin.importer.ImporterPlugin">
+                    <ARRAY NAME="library search paths" TYPE="string">
+                        <A VALUE="." />
+                        <A VALUE="/bin" />
+                        <A VALUE="/lib" />
+                        <A VALUE="/usr/bin" />
+                        <A VALUE="/usr/lib" />
+                        <A VALUE="/usr/X11R6/bin" />
+                        <A VALUE="/usr/X11R6/lib" />
+                        <A VALUE="/usr/java/packages/lib" />
+                        <A VALUE="/usr/lib/x86_64-linux-gnu/jni" />
+                        <A VALUE="/lib/x86_64-linux-gnu" />
+                        <A VALUE="/usr/lib/x86_64-linux-gnu" />
+                        <A VALUE="/usr/lib/jni" />
+                    </ARRAY>
+                </PLUGIN_STATE>
+                <ROOT_NODE X_POS="1717" Y_POS="25" WIDTH="813" HEIGHT="1385" EX_STATE="0" FOCUSED_OWNER="FrontEnd Tool" FOCUSED_NAME="FrontEnd" FOCUSED_TITLE="Project Window">
+                    <COMPONENT_NODE TOP_INFO="0">
+                        <COMPONENT_INFO NAME="FrontEnd" OWNER="FrontEnd Tool" TITLE="Project Window" ACTIVE="true" GROUP="Default" INSTANCE_ID="3345959729498829175" />
+                    </COMPONENT_NODE>
+                </ROOT_NODE>
+                <PREFERENCES>
+                    <PREFERENCE_STATE NAME="ghidra.framework.plugintool.dialog.ExtensionTableModel:Installation Status:Name:Description:Version:">
+                        <XML NAME="COLUMN_DATA">
+                            <Table_State>
+                                <COLUMN NAME="ghidra.framework.plugintool.dialog.ExtensionTableModel$ExtensionInstalledColumn.Installation Status" WIDTH="25" VISIBLE="true" />
+                                <COLUMN NAME="ghidra.framework.plugintool.dialog.ExtensionTableModel$ExtensionNameColumn.Name" WIDTH="176" VISIBLE="true" />
+                                <COLUMN NAME="ghidra.framework.plugintool.dialog.ExtensionTableModel$ExtensionDescriptionColumn.Description" WIDTH="326" VISIBLE="true" />
+                                <COLUMN NAME="ghidra.framework.plugintool.dialog.ExtensionTableModel$ExtensionVersionColumn.Version" WIDTH="177" VISIBLE="true" />
+                                <COLUMN NAME="ghidra.framework.plugintool.dialog.ExtensionTableModel$ExtensionInstallationDirColumn.Installation Directory" WIDTH="100" VISIBLE="false" />
+                                <COLUMN NAME="ghidra.framework.plugintool.dialog.ExtensionTableModel$ExtensionArchiveFileColumn.Archive File" WIDTH="100" VISIBLE="false" />
+                                <TABLE_SORT_STATE>
+                                    <COLUMN_SORT_STATE COLUMN_MODEL_INDEX="1" SORT_DIRECTION="ascending" SORT_ORDER="1" />
+                                </TABLE_SORT_STATE>
+                            </Table_State>
+                        </XML>
+                    </PREFERENCE_STATE>
+                    <PREFERENCE_STATE NAME="ghidra.framework.main.datatable.ProjectDataTableModel:Type:Name:Path:Modified:Processor:Endian:Address Size:Compiler:Size:Format:">
+                        <XML NAME="COLUMN_DATA">
+                            <Table_State>
+                                <COLUMN NAME="ghidra.framework.main.datatable.ProjectDataTableModel$DomainFileTypeColumn.Type" WIDTH="61" VISIBLE="true" />
+                                <COLUMN NAME="ghidra.framework.main.datatable.ProjectDataTableModel$DomainFileNameColumn.Name" WIDTH="90" VISIBLE="true" />
+                                <COLUMN NAME="ghidra.framework.main.datatable.ProjectDataTableModel$DomainFilePathColumn.Path" WIDTH="90" VISIBLE="true" />
+                                <COLUMN NAME="ghidra.framework.main.datatable.ProjectDataTableModel$ModificationDateColumn.Modified" WIDTH="91" VISIBLE="true" />
+                                <COLUMN NAME="ghidra.util.table.projectdata.column.ProcessorProjectDataColumn.Processor" WIDTH="74" VISIBLE="true" />
+                                <COLUMN NAME="ghidra.util.table.projectdata.column.EndianProjectDataColumn.Endian" WIDTH="74" VISIBLE="true" />
+                                <COLUMN NAME="ghidra.util.table.projectdata.column.AddressSizeProjectDataColumn.Address Size" WIDTH="67" VISIBLE="true" />
+                                <COLUMN NAME="ghidra.util.table.projectdata.column.CompilerProjectDataColumn.Compiler" WIDTH="73" VISIBLE="true" />
+                                <COLUMN NAME="ghidra.util.table.projectdata.column.DomainFileSizeProjectDataColumn.Size" WIDTH="77" VISIBLE="true" />
+                                <COLUMN NAME="ghidra.util.table.projectdata.column.FormatProjectDataColumn.Format" WIDTH="76" VISIBLE="true" />
+                                <COLUMN NAME="ghidra.util.table.projectdata.column.CreationDateProjectDataColumn.Created" WIDTH="200" VISIBLE="false" />
+                                <COLUMN NAME="ghidra.util.table.projectdata.column.ExecutablePathProjectDataColumn.Executable Path" WIDTH="60" VISIBLE="false" />
+                                <COLUMN NAME="ghidra.util.table.projectdata.column.LanguageProjectDataColumn.Language ID" WIDTH="60" VISIBLE="false" />
+                                <COLUMN NAME="ghidra.util.table.projectdata.column.CreatedWithProjectDataColumn.Created With" WIDTH="100" VISIBLE="false" />
+                                <COLUMN NAME="ghidra.util.table.projectdata.column.Md5ProjectDataColumn.MD5" WIDTH="120" VISIBLE="false" />
+                                <TABLE_SORT_STATE>
+                                    <COLUMN_SORT_STATE COLUMN_MODEL_INDEX="0" SORT_DIRECTION="ascending" SORT_ORDER="1" />
+                                </TABLE_SORT_STATE>
+                            </Table_State>
+                        </XML>
+                    </PREFERENCE_STATE>
+                </PREFERENCES>
+            </TOOL>
+        </TOOL_CONFIG>
+    </PROJECT_TOOL_CONFIG>
+    <PROJECT_DATA_XML_NAME NAME="DISPLAY_DATA">
+        <SAVE_STATE>
+            <ARRAY NAME="EXPANDED_PATHS" TYPE="string">
+                <A VALUE="gba:" />
+            </ARRAY>
+            <STATE NAME="SHOW_TABLE" TYPE="boolean" VALUE="false" />
+        </SAVE_STATE>
+    </PROJECT_DATA_XML_NAME>
+    <TOOL_MANAGER ACTIVE_WORKSPACE="Workspace">
+        <WORKSPACE NAME="Workspace" ACTIVE="true" />
+    </TOOL_MANAGER>
+</PROJECT>
+

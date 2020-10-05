@@ -1,0 +1,4 @@
+#!/bin/bash
+
+
+tar czf crypto_train.tar.gz *.py chal10* tmpl tokens.txt

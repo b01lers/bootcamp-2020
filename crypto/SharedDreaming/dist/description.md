@@ -1,0 +1,1 @@
+Title: Shared Dreaming Author: @a0su Difficulty: Easy Description: It's not just about depth you know, you need the simplest version of the idea in order for it to grow naturally in a subject's mind; it's a very subtle art.

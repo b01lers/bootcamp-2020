@@ -1,0 +1,27 @@
+STATUS: Validatating gr.
+WARNING:   No explicit src path.
+WARNING: Non-integer tiling in width (32 vs 256)
+WARNING: Non-integer tiling in height (32 vs 256)
+STATUS: Validation succeeded.
+STATUS: Started run at: 2020-07-20, 11:03:47
+STATUS: Validatating gr.
+STATUS: Validation succeeded.
+STATUS: Preparing data.
+STATUS: Work-DIB creation.
+STATUS: Work-DIB creation complete: 256x256@8.
+STATUS: Tile preparation.
+STATUS:   tiling to 256x256 tiles.
+STATUS:   tiling to 8x8 tiles.
+STATUS: Tile preparation complete.
+STATUS: Map preparation.
+STATUS:   Performing tile reduction: tiles, palette
+STATUS: Creating new tileset.
+STATUS: Map preparation complete.
+STATUS: Graphics preparation.
+STATUS:   Bitpacking: 8 -> 4.
+STATUS: Graphics preparation complete.
+STATUS: Palette preparation.
+STATUS: Palette preparation complete.
+STATUS: Data preparation complete.
+STATUS: Export to C: sdtileset into Z:\home\novafacing\hub\bootcamp-2020\rev\02-super-spy\src\docker\devkitpro\super-spy\assets\sdtileset.c .
+STATUS: Run completed :).

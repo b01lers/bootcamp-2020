@@ -1,0 +1,54 @@
+grid
+    programs
+        id
+        name
+        status
+        location
+    known_isomorphic_algorithms
+        id
+        name
+        status
+        location
+    to_derezz
+        id
+        name
+        status (idle)
+        location (holding_cell_xx)
+
+off_grid
+    some_rocks
+        id
+        description
+            another rock
+    some_bigger_rocks
+        id
+        description
+            a lightbike? part
+    big_big_rocks
+        id
+        description
+            an old _flying ship_ uninhabited for years
+    a_house
+        id
+        description
+            flynn
+
+
+possible values
+status:
+    - derezzed
+    - unknown
+    - idle
+    - running
+    - suspended
+    - zombie
+    - orphan
+location:
+    - unknown
+    - game-room-stands
+    - uplink-\d\d\w
+    - building-\d\d\w
+    - carrier-ship-\d\d\w
+    - game-room-\d\d\w
+name:
+    - [random_name]-\d\d\d\d

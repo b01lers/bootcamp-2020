@@ -1,0 +1,39 @@
+body {
+  font-family: sans-serif;
+  font-size: 100%;
+  color: white;
+  text-align: center;
+  background-color: black;
+}
+
+#horizontal_wrapper div {
+  float: left;
+  clear: none;
+}
+
+#controls {
+  padding-right: 30px;
+  position: fixed;
+}
+
+.maze-grid {
+  margin-left: 300px;
+}
+.maze-grid table {
+  border-collapse: collapse;
+  margin: 4px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.o {
+  font-size: 50%;
+  padding: 0;
+  color: yellow;
+}
+
+div.maze-grid td {
+  border: 1px solid rgb(36, 198, 224);
+  width: 20px;
+  height: 20px;
+}

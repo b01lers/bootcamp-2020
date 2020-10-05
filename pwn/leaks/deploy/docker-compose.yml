@@ -1,0 +1,23 @@
+version: "3.7"
+services:
+    leaks:
+        container_name: leaks
+        build:
+            dockerfile: ./deploy/Dockerfile
+            context: ../
+        logging:
+            driver: "json-file"
+        ports:
+            - "1009:1337"
+    leaks-build:
+        container_name: leaks-build
+        build:
+            dockerfile: ./deploy/Dockerfile-build
+            context: ../
+        logging:
+            driver: "json-file"
+        volumes:
+            - build:/home/leaks/build
+volumes:
+    build:
+        name: leaks-build

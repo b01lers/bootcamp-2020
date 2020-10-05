@@ -1,0 +1,38 @@
+<html>
+
+<div style="position: absolute; left: 15%; top: 15%;">
+<h2>Present your token to enter. &nbsp; &nbsp;</h2>
+<br>
+
+<form onsubmit="return verify(this);" >
+   <script>
+   "use strict";
+   function verify(f) {
+      var xhttp = new XMLHttpRequest();
+      xhttp.onreadystatechange = function() {
+        if (this.readyState == 4 && this.status == 200) {
+           if (xhttp.responseText.includes("html")) {
+              document.open();
+              document.write(xhttp.responseText);
+              document.close();
+           }
+           else {
+              var field = document.getElementById("error-field");
+              field.innerText = xhttp.responseText;
+           }
+        }
+      }
+      xhttp.open( "GET", "/?token=" + f.token.value, true);
+      xhttp.send(null);
+      return false;
+   }
+   </script>
+   <label for="token">Token:</label> 
+   <input type="text" name="token" length="32" style="width: 80%" />
+   <h2><label style="color:red" id="error-field"> </label>  &nbsp; </h2>
+   <input type="submit" value="Submit" style="position: absolute; bottom: 10%; right: 0; float: left" />
+</form>
+
+</div>
+
+</html>

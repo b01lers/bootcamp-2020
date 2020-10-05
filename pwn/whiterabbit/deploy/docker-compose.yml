@@ -1,0 +1,23 @@
+version: "3.7"
+services:
+    whiterabbit:
+        container_name: whiterabbit
+        build:
+            dockerfile: ./deploy/Dockerfile
+            context: ../
+        logging:
+            driver: "json-file"
+        ports:
+            - "1013:1337"
+    whiterabbit-build:
+        container_name: whiterabbit-build
+        build:
+            dockerfile: ./deploy/Dockerfile-build
+            context: ../
+        logging:
+            driver: "json-file"
+        volumes:
+            - build:/home/whiterabbit/build
+volumes:
+    build:
+        name: whiterabbit-build

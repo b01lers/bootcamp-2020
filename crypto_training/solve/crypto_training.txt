@@ -1,0 +1,231 @@
+# this is the map
+
+             N
+  
+   5(K)| 3(I)| 1(B)| 0
+   ----------------------
+   6(D)|  14 | 4(F)| 2(G)                  0: starting area
+ W ----------------------  E              14: wizard's lab
+   7(C)|   9 |11(L)|10(H)                  9: wizard tower
+   ----------------------
+   8(A)|   - |12(J)|13(E)
+       
+             S
+	    
+
+#
+# solutions (sketches)
+#
+
+prob 0:   landing page, kindergarden-level tests of interface
+-------
+
+LVL1: 2
+LVL2: -2
+LVL3: 1 3 7
+
+
+prob 1:   extended Euclidean algorithm  (use: gmpy2, sage, etc)
+-------
+
+LVL1: -16, 11
+LVL2: 784426129, -485011369
+LVL3: -716740480992306813107503753418846234036640156759836661475354416766574545237010296962263824224509107612115141091065808866650335667339422168844609337650456083904714828583142795906730708621014510898197333708554115609551003952289103814240209709219851287729419355090392174924377596434397802758684489757519,
+      4355772766846172289550960484253309708628309981859354451608388213582133495086922647575976048691479746491014530235602502674014803098803037825125357480987981590580196394415483266364546368978087653972266116991312510608494888084750532763692967382260459363590590286778039861513365053641201896497684198556508
+
+
+prob 2:   chinese remainder theorem - use: CRT in sage, or write your own 
+-------
+
+ note, LVL 3 has moduli that are not relative prime but that is not an issue really (unless you use 
+ some vanilla CRT)
+
+LVL1: 412
+LVL2: 6429412122
+LVL3: 1202114787574073135698562247558599073285047132156573830145908717087719050384755928081340071169158043961005726049447510357364537073462416777364540618918830057496883942982657669805211370184463326656
+
+
+prob 3:   factoring - use: yafu, sage, etc. yafu is much faster than sage.
+-------
+
+LVL1: [17, 17, 167]
+LVL2: [2, 7, 7, 13, 19, 19, 79, 601, 234490397, 1655726489421517]
+LVL3: [3, 11, 31, 29515817, 1075612307646757041328543, 1810939816479001125535889581, 
+        1209600061687323613153983466766686569317548327433]
+
+
+prob 4:   primality testing/prime counting - use: sage's next_prime()
+-------
+
+LVL1: 43
+LVL2: 5852187
+LVL3: 10000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000018661
+
+
+prob 5:   linear system mod prime (use: sage, gmpy2 for modular inverse & gcd)
+-------
+
+ LVL 1 & 2: just reorder as for normal linear systems but do modular inverse for divisions
+
+ LVL 3: cannot divide without knowing the prime... so express const*x mod N from a pair of eqns,
+        const' * x mod N from another pair, then take Q = (const'*const*x - const const'*x) mod N 
+        which must be zero mod N. Without mod N the result for Q will be far from zero but that
+        is OK, one of the prime divisors of that result is N (so factor and get N). The rest is
+        then same as LVLs 1 & 2.
+
+LVL1: 111, 275
+LVL2: 5415645, 1561936
+LVL3: x,y,N = [ 43674417398322942030809924714960023918,
+                260639507265100552695534763765703079339,
+                515698084587081313853676972411220991033 ]
+
+
+prob 6:   discrete log - use: sage's discrete_log()
+-------
+
+ LVL 3 has nonprime modulus N = p1 * ... * pn. Factor it to get p_i, solve the dlog mod p_i
+ for each i, then reconstruct the answer to the original problem via CRT
+ (watch out, you need to determine the actual order of the generator, it is not always p_i-1
+  - this is where sage comes handy)
+
+LVL1: 39
+LVL2: 1768477821
+LVL3: 2358697945552082059831024947255593385327909489688503720985669006663859246025385029464531254734282657195481160704251786434990612691815052924908045078
+
+
+prob 7:  roots mod p  - use: sage's square_root_mod_prime
+-------
+
+ LVL3: you need to take sqrt, sqrt, then cube root
+       -> for cube root there are known algs, the particlar case here does not need Tonelli-Shanks
+          (see https://stackoverflow.com/questions/6752374/cube-root-modulo-p-how-do-i-do-this)
+       
+       Each sqrt gives 2 numbers (Q or -Q), the cube root 3 (to get all 3 you need cube roots of unity), 
+       so you get 6 answers, then pick smallest. Cube roots of unity can be generated stochastically
+       by taking a^[(p-1)/3] mod p for random a. The reason you get 6 answers and not 2*2*3=12 is that
+       (p-1) is not divisible by 4 (so after undoing the two square roots you still have only 2 possible
+       values for x^3, not four).
+
+LVL1: 31 or 66
+LVL2: 548653309 or 810550192
+LVL3: 1432348556679097207976924262798432006319493853972676670846733320373362810364769377239428651127560672320871090332377840183689975753063716953112491414617177
+
+
+prob 8: LLL problem - use: sage's LLL() function
+------
+
+LLL stands for https://en.wikipedia.org/wiki/Lenstra%E2%80%93Lenstra%E2%80%93Lov%C3%A1sz_lattice_basis_reduction_algorithm
+
+Primarily it is an alg that takes a list of vectors and spits out linear combinations (a new basis) that 
+has mostly short vectors. While LVLs 1 & 2 can be bruteforced (with some ingenuity for LVL2), for LVL3
+you definitely need the alg. The way you use it here, e.g., for a*x+b*y+c*z = 0 is to make your original vectors
+     [1, 0, 0, a * K]  = v1
+     [0, 1, 0, b * K]  = v2
+     [0, 0, 1, c * K]  = v3
+with a huge K, then ask LLL to reduce this basis. Because K is huge, for short vectors it will be forced to 
+make linear combinations x*v1 + y*v2 + z*v3 with a*x+b*y+c*z = 0, because any other value would have a last
+component K * integer = huge. Incidentally, the way the 0s and 1s are set in v1,v2,v3, you can just read off
+the values of x, y, z from the first three components of the LLL results (which will look like
+(x, y, z, something) ).
+
+
+LVL1: (-13, 6, 7) or (-8, 23, -23) or -1 times these
+LVL2: (144168, -59243, -222326) or (-128203, 277543, -138757) or -1 times these
+LVL3: [46055792207031492585236658546307916091, 135029002737367008698739296443923408615, -211401559242938519900587929871669033253, 143756772417090339210360644246443259238, -30204570393449551872754737407297785954]
+      or -1 times this
+
+
+prob 9: wizard tower -> Rite of Passage challenge
+-------
+
+ every (256^3)-th number on average works, so start 1, 2, 3, ... eventually get one (the challenge was 
+ generated with 2468097531 but there are many solutions earlier than that)
+
+LVL1: many working answers, e.g., 5663566  
+ 
+
+prob 10: XOR cipher - write your own code
+-------
+
+This is a standard problem, e.g., see the cryptopals.com website. LVLs 1&2 are bruteforceable but 
+especially for LVL3 you need to write a function that can score a string based on how 'textlike' it 
+is. I found the simplest to give 2 points for letters and spaces, one point for anything 0x20 - 0x7f 
+in ascii, zero for newline 0xa, and -10 points for everything else. Then you group letters at the
+same key position (e.g., positions 0, 4, 8, ...; 1, 5, 9, 13.... in LVL2) and find the xor byte that
+gives highest score.
+
+In LVL3 you also need to find the key length - for that use Hamming distance (counts number of 
+differing bits). Just compute the average Hamming distance of the i-th and (i+n)-th characters as i 
+runs through the ciphertext, then vary 'n' and find the lowest average value. For example if you try n 
+= 1-100 in this problem, you will find 93, 62, 31 to be the smallest, and the actual key length is 31.
+
+LVL1: 25512   (key 0x69)
+LVL2: 1792160394037 (key 0x4a9f286e)
+LVL3: 419797111204456911416422273621730563266064217188764214578604591487313289363 (key 0xed98c444ea8acd9977031d048822059610297ff9e883c83d99afe04910a093)
+
+
+prob 11: meet-in-the-middle - use: PyCrypto for AES, write the rest yourself, e.g., in Python 
+-------
+  
+  LVL 1 & 2 are bruteforceable without meet-in-the-middle (1.5 hrs for LVL2 that way, Python is slow)
+
+LVL1: 2736495870102169 (keys 185, 232)
+LVL2: 8143643096686783 (keys 44230, 29315)
+LVL3: 6523399189690767 (keys 7312010, 11692107)
+
+
+prob 12: Cornacchia's algorithm - use sage, implement the alg on Wikipedia (needs factoring of b first)
+-------
+
+For the necessary square root r0 use sage's square_root_mod_prime.
+
+LVL3: you need to construct all possible r0 values - there are 2^n options generate by what sign you pick
+      when you solve the sqrt equation mod p_i, where p_i is a prime factor of 'b'. Even then, you will
+      fail here because there is no primitive solution with gcd(x,y) = 1. OTOH, b has a square 109^2
+      in it, so divide x,y by 109, b by 109^2 and retry (this is all explained on Wikipedia for the
+      Cornacchia algorithm).
+
+LVL1: (45, 17) or (21, 19)
+LVL2: (729485423, 689247146)
+LVL3: (822249775978922834074863312050877571308123090437, 748784818951812933713395251176142145550673582079)
+
+
+prob 13: polynomials over GF(2) - use sage's PolynomialRing(GF(2), x)
+-------
+
+LVLs 1&2 are easy, sage can do modular division too (same a % b notation as for numbers)
+
+LVL3 is tricky because you cannot apply the quadratic equation solution formula in fields of 
+characteristic two (you cannot multiply or divide by 2 because 2*anything = 0 here). There are algs to 
+do this but I found simplest to reconstruct x bit by bit, from the highest bit downwards. If y is
+the highest bit of x, i.e., x = x0 + y, and you know y, then 
+
+  a * x^2 + b*x + c = a*(x0^2 + 2 * x0*y + y^2) + b*(x0+y) + c = a*x0^2 + b*x0 + (c+a*y^2+b*y),
+
+so you get back the same equation for a smaller x0 with same a,b, but different c (note 2*x0*y = 0).
+
+First the highest bit in x (this is guaranteed to be bounded because eventually a*x^2 beats all other 
+terms, also note that there is no carry in the math here, GF(2) works like xor, so this has a definite 
+answer independently of the lower bits in a,b,c,x), then check whether the eqn is satisfied with that 
+highest bit being 0 or 1, if only one option works, subtract the y term off and repeat until you got 
+all the bits. If both 0 and 1 bits work for y, then you need to branch and follow both possibilities 
+down the line (does not happen often, most often one of the branches reaches an inconsistent result, 
+so it terminates early).
+
+	
+LVL1: 729
+LVL2: 90071293
+LVL3: 23460293004934044667628268721192809418561264738963529778769473665520855679803
+
+  
+prob 14:  laboratory in wizard tower -> Easy as PI challenge
+--------  
+
+ Only needs first 100 digits of pi (already there in the hash source code disclosed). Submitting the
+ answer successfully is another matter..
+
+
+LVL1: 3141592653589793238462643383279502884197169399375105820974944592307816406286208998628034825342117067
+
+
+==END==

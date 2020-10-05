@@ -1,0 +1,1 @@
+The docker-compose file in the docker directory will build and start a docker container with all the GBA dev tools you need to compile GBA games as well as libraries you'll want to use. It is set up to use a local directory for its filesystem. This is NOT secure but is nice for development ease reasons. Don't expose SSH on that docker to the internet. You have been warned.

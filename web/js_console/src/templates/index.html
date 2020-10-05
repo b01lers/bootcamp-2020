@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Login.</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='css/tron.css') }}"
+    />
+    <script>
+      function login(username, password) {
+        if (username == "CLU" && password == "0222") {
+          window.location = "/maze";
+        } else window.location = "/";
+      }
+    </script>
+  </head>
+
+  <body style="background-image: url('/static/img/background.png')">
+    <div id="main-wrapper">
+      <div class="content-page">
+        <div>
+          <h1>Grid Entrance.</h1>
+        </div>
+
+        <div class="row">
+          <div class="login">
+            Username:
+            <input
+              type="text"
+              name="username"
+              style="width:80%"
+              id="username_input"
+            />
+            Password:
+            <input
+              type="password"
+              name="password"
+              style="width:80%"
+              id="password_input"
+            />
+            <button
+              onClick="login(document.getElementById('username_input').value, document.getElementById('password_input').value)"
+            >
+              Login.
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

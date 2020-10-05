@@ -1,0 +1,22 @@
+FROM ubuntu:20.04
+
+# Change example to the name of your challenge.
+ENV USER whiterabbit
+
+WORKDIR /home/$USER
+
+RUN useradd $USER
+RUN apt-get update
+RUN apt-get install -y build-essential
+RUN apt-get install -y gcc-multilib
+
+COPY ./src/$USER.c /home/$USER/
+COPY ./src/$USER.Makefile /home/$USER/Makefile
+
+RUN mkdir /home/$USER/build
+RUN make -C /home/$USER/ && cp /home/$USER/$USER /home/$USER/build/$USER && sh -c "ldd /home/$USER/build/$USER | grep '=>' | cut -d' ' -f3 | xargs -I '{}' cp -L -v '{}' /home/$USER/build/"
+
+RUN chown -R root:$USER /home/$USER
+RUN chmod -R 550 /home/$USER
+
+CMD sleep 5
